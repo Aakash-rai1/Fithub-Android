@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         return true
     }
-
+    //set  this as launching activity
     private fun userValidator(): Boolean {
         // given name and password
         val userName=etUserName.text.toString()
