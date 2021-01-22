@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun isValid():Boolean{
         when{
+            //this will give messgae to enter name
             etUserName.text.isEmpty()==true->{
                 etUserName.error="Please enter username"
                 return false
