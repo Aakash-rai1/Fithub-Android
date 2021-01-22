@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 etUserName.error="Please enter username"
                 return false
             }
-
+            //this will check password field
             etPassword.text.isEmpty()==true->{
                 etPassword.error="please enter password"
                 return false
