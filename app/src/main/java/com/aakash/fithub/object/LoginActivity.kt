@@ -72,11 +72,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun userValidator(): Boolean {
 
-//        val userName=etUserName.text.toString()
-//        val password=etPassword.text.toString()
-//        if(userName=="admin" && password=="admin"){
-//            return true
-//        }
+        val userName=etUserName.text.toString()
+        val password=etPassword.text.toString()
+        if(userName=="admin" && password=="admin"){
+            return true
+        }
         return false
 
     }
