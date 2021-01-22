@@ -29,11 +29,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-//        when (v?.id) {
-//            R.id.login -> {
-//                val intent = Intent(this, LoginActivity::class.java )
-//                startActivity(intent)
-//            }
-//        }
+        when (v?.id) {
+            R.id.login -> {
+                val intent = Intent(this, LoginActivity::class.java )
+                startActivity(intent)
+            }
+        }
     }
 }
