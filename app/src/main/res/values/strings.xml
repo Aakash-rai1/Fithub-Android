@@ -2,4 +2,6 @@
     <string name="app_name">FitHub</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip_intro">skip_intro</string>
+    <string name="next">next</string>
 </resources>

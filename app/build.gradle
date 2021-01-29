@@ -60,4 +60,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation  'androidx.room:room-ktx:2.2.6'
+
+    //viewpager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }
