@@ -86,7 +86,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    //for bnuttons
+    //for buttons
     private fun setCurrentIndicator(index: Int){
         val childCount = indicatorContainer.childCount
         for(i in 0 until childCount){

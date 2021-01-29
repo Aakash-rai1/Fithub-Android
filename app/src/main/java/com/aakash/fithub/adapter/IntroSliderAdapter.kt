@@ -22,14 +22,12 @@ RecyclerView.Adapter<IntroSliderAdapter.IntroSliderViewHolder>(){
             textDescription.text = introSlide.description
             imageIcon.setImageResource(introSlide.icon)
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSliderViewHolder {
         return IntroSliderViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.slide_item_container, parent, false)
         )
-
     }
 
     override fun onBindViewHolder(holder: IntroSliderViewHolder, position: Int) {
