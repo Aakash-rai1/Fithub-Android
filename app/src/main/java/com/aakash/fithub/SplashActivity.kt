@@ -35,6 +35,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        //calling the id from splash activity
         introSliderViewPager = findViewById(R.id.introSliderViewPager)
         indicatorContainer = findViewById(R.id.indicatorContainer)
         buttonNext = findViewById(R.id.buttonNext)
