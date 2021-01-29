@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
             R.drawable.fitness),
 
             IntroSlide("Video Streaming",
-            "Watch the tutorials for performing your workout",
+            "Watch tutorials for performing your workouts",
             R.drawable.stream)
         )
     )
