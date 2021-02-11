@@ -14,7 +14,7 @@ import com.aakash.fithub.`object`.LoginActivity
 import com.aakash.fithub.adapter.IntroSliderAdapter
 import com.google.android.material.button.MaterialButton
 
-class SplashActivity : AppCompatActivity() {
+class SliderActivity : AppCompatActivity() {
     private lateinit var introSliderViewPager: ViewPager2
     private lateinit var indicatorContainer: LinearLayout
     private lateinit var buttonNext: MaterialButton
@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_slider)
 
         //calling the id from splash activity
         introSliderViewPager = findViewById(R.id.introSliderViewPager)

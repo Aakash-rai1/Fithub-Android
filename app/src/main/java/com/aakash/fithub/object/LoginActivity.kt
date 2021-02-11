@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signup -> {
                 val intent= Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
+                finish()
             }
 
             R.id.btnLogin -> {

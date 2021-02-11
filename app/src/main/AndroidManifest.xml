@@ -17,17 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitHub">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".object.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".object.RegisterActivity" />
-        <activity android:name=".object.LoginActivity">
+        <activity android:name=".SliderActivity">
 
         </activity>
+        <activity android:name=".object.RegisterActivity" />
+        <activity android:name=".object.LoginActivity"></activity>
         <activity android:name=".MainActivity" />
     </application>
 
