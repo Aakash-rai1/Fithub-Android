@@ -12,32 +12,42 @@
     <TextView
         android:text="Fithub"
         android:layout_gravity="center"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="5dp"
         android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etfname"
         android:layout_margin="20dp"
-        android:hint="e-mail"
+        android:hint="First name"
         android:textColorHint="@color/black"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:padding="10dp"
         android:background="@drawable/edittext_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etlname"
         android:layout_margin="20dp"
-        android:hint="Username"
+        android:hint="Last name"
         android:textColorHint="@color/black"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="@drawable/edittext_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_margin="20dp"
+        android:hint="Email"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:padding="10dp"
         android:background="@drawable/edittext_background"
@@ -48,7 +58,21 @@
         android:id="@+id/etPassword"
         android:layout_margin="20dp"
         android:hint="Password"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:background="@drawable/edittext_background"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etCPassword"
+        android:layout_margin="20dp"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+
         android:inputType="textPassword"
         android:textSize="20sp"
         android:background="@drawable/edittext_background"
