@@ -1,22 +1,42 @@
 package com.aakash.fithub.`object`
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.opengl.ETC1.isValid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.aakash.fithub.MainActivity
 import com.aakash.fithub.R
+import com.aakash.fithub.api.ServiceBuilder
+import com.aakash.fithub.repository.UserRepository
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+    private val permissions = arrayOf(
+            android.Manifest.permission.CAMERA,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+
     private lateinit var etUserName: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
-
+    private lateinit var LinearLayout: LinearLayout
     private lateinit var signup: Button
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -24,13 +44,42 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         etPassword=findViewById(R.id.etPassword)
         btnLogin=findViewById(R.id.btnLogin)
         signup=findViewById(R.id.signup)
+        LinearLayout=findViewById(R.id.Linearlayout)
 
+
+        checkRunTimePermission()
 
         btnLogin.setOnClickListener(this)
         signup.setOnClickListener(this)
 
 
     }
+
+    private fun checkRunTimePermission() {
+        if (!hasPermission()) {
+            requestPermission()
+        }
+    }
+    private fun hasPermission(): Boolean {
+        var hasPermission = true
+        for (permission in permissions) {
+            if (ActivityCompat.checkSelfPermission(
+                            this,
+                            permission
+                    ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                hasPermission = false
+                break
+            }
+        }
+        return hasPermission
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(this@LoginActivity, permissions, 1)
+    }
+
+
 
     override fun onClick(v: View?) {
         when(v?.id){
@@ -42,44 +91,51 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btnLogin -> {
-                if (isValid()) {
-                    if (userValidator()) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Invalid username/password", Toast.LENGTH_SHORT).show()
+                login()
+            }
+
+        }
+    }
+
+    private fun login() {
+        val email = etUserName.text.toString()
+        val password = etPassword.text.toString()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val repository = UserRepository()
+                val response = repository.checkUser(email, password)
+                if (response.success == true) {
+                    ServiceBuilder.token = "Bearer " + response.token
+                    startActivity(
+                            Intent(
+                                    this@LoginActivity,
+                                    MainActivity::class.java
+                            )
+                    )
+                    finish()
+                } else {
+                    withContext(Dispatchers.Main) {
+                        val snack =
+                                Snackbar.make(
+                                        LinearLayout,
+                                        "Invalid credentials",
+                                        Snackbar.LENGTH_LONG
+                                )
+                        snack.setAction("OK", View.OnClickListener {
+                            snack.dismiss()
+                        })
+                        snack.show()
                     }
                 }
-            }
 
-        }
-    }
-
-    private fun isValid():Boolean{
-        when{
-            //this will give messgae to enter name
-            etUserName.text.isEmpty()==true->{
-                etUserName.error="Please enter username"
-                return false
-            }
-            //this will check password field
-            etPassword.text.isEmpty()==true->{
-                etPassword.error="please enter password"
-                return false
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                            this@LoginActivity,
+                            "Login error", Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
-        return true
-    }
-    //set  this as launching activity
-    private fun userValidator(): Boolean {
-        // given name and password
-        val userName=etUserName.text.toString()
-        val password=etPassword.text.toString()
-        if(userName=="admin" && password=="admin"){
-            return true
-        }
-        return false
-
     }
 }

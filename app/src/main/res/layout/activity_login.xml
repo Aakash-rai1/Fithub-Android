@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:id="@+id/Linearlayout"
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     tools:context=".object.LoginActivity">
@@ -23,7 +24,7 @@
     <EditText
         android:id="@+id/etUserName"
         android:layout_margin="20dp"
-        android:hint="Username"
+        android:hint="Email"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:textSize="20sp"

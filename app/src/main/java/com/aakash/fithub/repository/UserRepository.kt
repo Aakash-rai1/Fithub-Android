@@ -15,8 +15,9 @@ class UserRepository: MyApiRequest() {
             myApi.userAdd(user)
         }
     }
-    suspend fun checkUSer(username:String,password:String):LoginResponse{
+    suspend fun checkUser(email:String,password:String):LoginResponse{
         return apiRequest {
-            myApi.checkUSer(username,password) }
+            myApi.checkUser(email, password)
+        }
     }
 }

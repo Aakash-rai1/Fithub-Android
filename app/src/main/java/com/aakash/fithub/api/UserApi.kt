@@ -13,10 +13,10 @@ interface UserApi {
     suspend fun userAdd(@Body users: User):Response<RegisterResponse>
 
     @FormUrlEncoded
-    @POST("user/login")
-    suspend fun checkUSer(
-        @Field("email")  email:String,
-        @Field("password") password:String,
+    @POST("auth/login")
+    suspend fun checkUser(
+        @Field("email") email:String,
+        @Field("password") password:String
     ):Response<LoginResponse>
 
 }
