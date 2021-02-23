@@ -6,10 +6,8 @@ import android.opengl.ETC1.isValid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import com.aakash.fithub.MainActivity
 import com.aakash.fithub.R
@@ -44,12 +42,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         etPassword=findViewById(R.id.etPassword)
         btnLogin=findViewById(R.id.btnLogin)
         signup=findViewById(R.id.signup)
-        LinearLayout=findViewById(R.id.Linearlayout)
+        LinearLayout=findViewById(R.id.layout)
 
 
         checkRunTimePermission()
 
-        btnLogin.setOnClickListener(this)
+        btnLogin.setOnClickListener{
+            login()
+        }
         signup.setOnClickListener(this)
 
 
@@ -90,9 +90,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
 
-            R.id.btnLogin -> {
-                login()
-            }
 
         }
     }
@@ -104,6 +101,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             try {
                 val repository = UserRepository()
                 val response = repository.checkUser(email, password)
+                println(response)
                 if (response.success == true) {
                     ServiceBuilder.token = "Bearer " + response.token
                     startActivity(
