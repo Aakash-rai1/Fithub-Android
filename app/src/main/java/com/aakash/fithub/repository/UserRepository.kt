@@ -1,3 +1,4 @@
+
 package com.aakash.fithub.repository
 
 import com.aakash.fithub.api.MyApiRequest
@@ -15,9 +16,9 @@ class UserRepository: MyApiRequest() {
             myApi.userAdd(user)
         }
     }
-    suspend fun checkUser(email:String,password:String):LoginResponse{
+    suspend fun checkUser(user: User):LoginResponse{
         return apiRequest {
-            myApi.checkUser(email, password)
+            myApi.checkUser(user)
         }
     }
 }
