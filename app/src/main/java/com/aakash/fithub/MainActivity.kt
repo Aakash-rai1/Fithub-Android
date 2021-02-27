@@ -1,8 +1,8 @@
 package com.aakash.fithub
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.WorkSource
 import android.view.MenuItem
 import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.aakash.fithub.fragments.BmiFragment
 import com.aakash.fithub.fragments.HomeFragment
 import com.aakash.fithub.fragments.ProfileFragment
 import com.aakash.fithub.fragments.WorkoutFragment
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toolbar: Toolbar
     private lateinit var drawer: DrawerLayout
     lateinit var toggleAction: ActionBarDrawerToggle
+    private lateinit var navView: NavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +36,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val homeFragment = HomeFragment()
         val workoutFragment = WorkoutFragment()
         val profileFragment = ProfileFragment()
+        val bmiFragment= BmiFragment()
 
         drawer=findViewById(R.id.drawer_layout);
 
-       toggleAction = ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close )
+       toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close )
         drawer.addDrawerListener(toggleAction);
         toggleAction.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
 
@@ -47,6 +52,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toolbar=findViewById(R.id.toolbar)
         setSupportActionBar(toolbar);
 
+        navView= findViewById(R.id.navView)
+
+
+        //fragments from slider menu
+        navView.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.plans->{makeCurrentFragment(homeFragment)}
+            }
+            when(it.itemId){
+                R.id.bmi->{makeCurrentFragment(bmiFragment)}
+            }
+            true
+        }
+
+
+
+        //opening fragments from bottom navigation
         makeCurrentFragment(homeFragment)
 
         bottomNavigation= findViewById(R.id.bottomNavigation)
@@ -67,20 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        bottomNavigation.setOnNavigationItemReselectedListener {item->
-            when(item.itemId){
-                R.id.icHome ->{makeCurrentFragment(homeFragment)
-                    true
-                }
-                R.id.icWorkout ->{makeCurrentFragment(workoutFragment)
-                    true
-                }
-                R.id.icProfile ->{makeCurrentFragment(profileFragment)
-                    true
-                }
-                else -> false
-            }
-        }
+
 
 
     }
@@ -103,6 +113,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        if(toggleAction.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item)
+
     }
+
 }
