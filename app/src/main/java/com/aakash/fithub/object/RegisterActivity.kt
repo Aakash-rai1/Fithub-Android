@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.aakash.fithub.R
-import com.aakash.fithub.model.User
+import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

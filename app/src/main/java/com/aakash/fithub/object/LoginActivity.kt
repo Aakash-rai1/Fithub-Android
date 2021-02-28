@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import com.aakash.fithub.MainActivity
 import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
-import com.aakash.fithub.model.User
+import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -99,11 +99,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = etUserName.text.toString()
         val password = etPassword.text.toString()
         Toast.makeText(this, "${email + password}", Toast.LENGTH_SHORT).show()
-        val user=User(email=email,password = password)
+        val user= User(email=email,password = password)
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val repository = UserRepository()
-                val response = repository.checkUser(user)
+                val response = repository.checkUser(user = user)
                 if (response.success == true) {
                     ServiceBuilder.token = "Bearer " + response.token
                     startActivity(
