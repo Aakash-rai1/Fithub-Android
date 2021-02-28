@@ -39,13 +39,14 @@ class WorkoutHomeAdapter (
             name.text = workout.wname
             program.text = workout.program
             link.text = workout.link
-            val imagePath = ServiceBuilder.loadImagepath() + workout.photo
-            if (!workout.photo.equals("no-photo.jpg")) {
-                Glide.with(mContext)
-                        .load(imagePath)
-                        .fitCenter()
-                        .into(imageView)
-            }
+//            val imagePath = ServiceBuilder.loadImagepath() + workout.image
+//            println(imagePath)
+//            if (!workout.image.equals(null)) {
+//                Glide.with(mContext)
+//                        .load(imagePath)
+//                        .fitCenter()
+//                        .into(imageView)
+//            }
 //            val student=Student(name.text.toString() ,age.text.toString(),gender,address)
 
 
@@ -64,7 +65,7 @@ class WorkoutHomeAdapter (
     }
 
     override fun getItemCount(): Int {
-        return listWorkout.size
+        return listWorkout.size;
     }
 
 
