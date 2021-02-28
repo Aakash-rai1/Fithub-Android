@@ -7,6 +7,8 @@ import com.aakash.fithub.`object`.RegisterActivity
 import com.aakash.fithub.entity.User
 
 
+
+//room db
 @Dao
 interface UserDAO {
     @Insert
