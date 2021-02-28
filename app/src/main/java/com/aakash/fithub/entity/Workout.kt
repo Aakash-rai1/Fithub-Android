@@ -11,5 +11,5 @@ class Workout (
         val wname: String?=null,
         val program: String?= null,
         val link: String?=null,
-        val photo:String?=null
+        val image:String?=null
         )
