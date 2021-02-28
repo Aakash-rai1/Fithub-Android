@@ -1,6 +1,6 @@
 package com.aakash.fithub.api
 
-import com.aakash.fithub.model.User
+import com.aakash.fithub.entity.User
 import com.aakash.fithub.response.LoginResponse
 import com.aakash.fithub.response.RegisterResponse
 import retrofit2.Response
