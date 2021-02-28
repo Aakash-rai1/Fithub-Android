@@ -1,10 +1,10 @@
 package com.aakash.fithub
 
 class BMIFormula {
-    var height: Double=0.0
-    var weight: Double = 0.0
+    var height: Float=0F
+    var weight: Float=0F
 
-    fun bmi():Double{
-        return weight % height
+    fun bmi():Float{
+        return (weight / height)
     }
 }

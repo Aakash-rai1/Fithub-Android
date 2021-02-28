@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.aakash.fithub.BMIFormula
@@ -19,6 +20,7 @@ class BmiFragment : Fragment() {
     private lateinit var weight: EditText
     private lateinit var height: EditText
     private lateinit var btnCalculate: Button
+    private lateinit var bmiResult:TextView
 
 
 
@@ -34,16 +36,20 @@ class BmiFragment : Fragment() {
         weight=view.findViewById(R.id.etWeight)
         height= view.findViewById(R.id.etHeight)
         btnCalculate= view.findViewById(R.id.btnCalculate)
+        bmiResult=view.findViewById(R.id.bmiResult)
 
         btnCalculate.setOnClickListener{
             val h=height.text.toString()
             val w= weight.text.toString()
             val calc= BMIFormula()
-            calc.height=h.toDouble()
-            calc.weight=w.toDouble()
+            calc.height=h.toFloat()
+            calc.weight=w.toFloat()
             val bmi=calc.bmi()
 
-            //Toast.makeText(this,"$bmi", Toast.LENGTH_SHORT).show()
+            bmiResult.setText("Your BMI Index is $bmi")
+//            Toast.makeText(this,"$bmi", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity,"$bmi",Toast.LENGTH_SHORT).show()
+
         }
         return view
 
