@@ -21,14 +21,14 @@
         android:id="@+id/etHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your height"
+        android:hint="Enter your height (m)"
         android:layout_margin="30dp"/>
 
     <EditText
         android:id="@+id/etWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your weight"
+        android:hint="Enter your weight (kg)"
         android:layout_margin="30dp"/>
 
     <Button
