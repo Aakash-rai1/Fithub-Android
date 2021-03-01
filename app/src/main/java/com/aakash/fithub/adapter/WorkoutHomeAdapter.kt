@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
 
 class WorkoutHomeAdapter (
         private val data: ArrayList<Workout>,
-        var mContext: Context
+        var context: Context
 ): RecyclerView.Adapter<WorkoutHomeAdapter.HomeViewholder>() {
     private var listWorkout: ArrayList<Workout> = data
     inner class HomeViewholder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -39,14 +39,14 @@ class WorkoutHomeAdapter (
             name.text = workout.wname
             program.text = workout.program
             link.text = workout.link
-//            val imagePath = ServiceBuilder.loadImagepath() + workout.image
-//            println(imagePath)
-//            if (!workout.image.equals(null)) {
-//                Glide.with(mContext)
-//                        .load(imagePath)
-//                        .fitCenter()
-//                        .into(imageView)
-//            }
+            val imagePath = ServiceBuilder.loadImagepath() + workout.image
+            println(imagePath)
+            if (!workout.image.equals(null)) {
+                Glide.with(context)
+                        .load(imagePath)
+                        .fitCenter()
+                        .into(imageView)
+            }
 //            val student=Student(name.text.toString() ,age.text.toString(),gender,address)
 
 
