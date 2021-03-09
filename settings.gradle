@@ -1,2 +1,3 @@
+include ':notificationos'
 include ':app'
 rootProject.name = "FitHub"
