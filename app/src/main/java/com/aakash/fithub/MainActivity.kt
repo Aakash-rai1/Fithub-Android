@@ -3,8 +3,10 @@ package com.aakash.fithub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,6 +22,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private var doubleBackToExitPressedOnce = false
+
 
     private lateinit var bottomNavigation: BottomNavigationView
     lateinit var linear: LinearLayout
@@ -95,13 +100,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+
     @Override
     override fun onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-           drawer.closeDrawer(GravityCompat.START)
-        }else {
-            super.onBackPressed()
-        }
+//        if(drawer.isDrawerOpen(GravityCompat.START)){
+//           drawer.closeDrawer(GravityCompat.START)
+//        }else {
+//            super.onBackPressed()
+//        }
+
+//double back press to exit
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+                return
+            }
+
+            this.doubleBackToExitPressedOnce = true
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+            Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+
     }
 
     private fun makeCurrentFragment(fragment: Fragment) {

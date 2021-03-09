@@ -33,12 +33,12 @@ class WorkoutHomeAdapter (
             val name = view.findViewById<TextView>(R.id.wname)
             val program = view.findViewById<TextView>(R.id.program)
             val imageView = view.findViewById<ImageView>(R.id.imageView)
-            val link = view.findViewById<TextView>(R.id.link)
+           // val link = view.findViewById<TextView>(R.id.link)
 //
             val _id=workout._id
             name.text = workout.wname
             program.text = workout.program
-            link.text = workout.link
+            //link.text = workout.link
             val imagePath = ServiceBuilder.loadImagepath() + workout.image
             println(imagePath)
             if (!workout.image.equals(null)) {

@@ -26,7 +26,7 @@ class SliderActivity : AppCompatActivity() {
     private val introSliderAdapter = IntroSliderAdapter(
         listOf(
             IntroSlide("Workout from home",
-            "workout anytime anywhere with fithub",
+            "Workout. Anytime. Anywhere. with Fithub",
             R.drawable.fitness),
 
             IntroSlide("Video Streaming",
