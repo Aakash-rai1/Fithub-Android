@@ -1,6 +1,8 @@
 package com.aakash.fithub
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -36,6 +38,13 @@ class SliderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slider)
 
+
+        if(!isFirstTimeAppStart()){
+            setAppStartStatus(false)
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
         //calling the id from splash activity
         introSliderViewPager = findViewById(R.id.introSliderViewPager)
         indicatorContainer = findViewById(R.id.indicatorContainer)
@@ -57,19 +66,40 @@ class SliderActivity : AppCompatActivity() {
                 introSliderViewPager.currentItem+=1
             }
             else{
+                setAppStartStatus(true)
                 Intent(applicationContext, LoginActivity::class.java).also {
                     startActivity(it)
+
                 }
+                finish()
             }
         }
 
         textSkipIntro.setOnClickListener {
+            setAppStartStatus(true)
             Intent(applicationContext, LoginActivity::class.java).also {
                 startActivity(it)
+                finish()
             }
         }
 
     }
+
+
+
+    private fun isFirstTimeAppStart(): Boolean {
+        val pref= applicationContext.getSharedPreferences("SLIDER_APP", Context.MODE_PRIVATE)
+        return pref.getBoolean("APP_START", true)
+
+    }
+
+    private fun setAppStartStatus(status: Boolean) {
+        val pref= applicationContext.getSharedPreferences("SLIDER_APP", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor= pref.edit()
+        editor.putBoolean("APP_START", status)
+        editor.apply()
+    }
+
     private fun setupIndicators(){
         val indicators= arrayOfNulls<ImageView>(introSliderAdapter.itemCount)
         val layoutParams: LinearLayout.LayoutParams= LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
