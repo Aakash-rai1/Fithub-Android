@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:id="@+id/drawer_layout"
-    tools:openDrawer="start">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    >
 
 
 
@@ -16,7 +18,8 @@
         android:layout_above="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        >
 
 
         <androidx.appcompat.widget.Toolbar
@@ -27,6 +30,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp"/>
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragmentContainer"

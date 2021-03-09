@@ -3,19 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragments.HomeFragment">
 
-    <TextView
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carousel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Workout "
-        android:textSize="36dp"/>
+        android:layout_height="150dp"
+        app:pageColor="#00000000"
+        app:fillColor="#ffffffff"
+        app:slideInterval="5000"
+        app:radius="6dp"
+        app:strokeWidth="1dp"/>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeWorkOutrec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        />
+        android:layout_marginTop="155dp" />
 
 </FrameLayout>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#87ceeb"
+    android:background="@color/grey"
     android:layout_marginTop="15dp"
     android:layout_height="wrap_content">
 
@@ -12,9 +12,10 @@
         android:id="@+id/link"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="92dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wname" />
 
@@ -22,6 +23,7 @@
         android:id="@+id/wname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
@@ -31,6 +33,7 @@
     <TextView
         android:id="@+id/program"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +44,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="184dp"
+        android:layout_width="250dp"
         android:layout_height="206dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
