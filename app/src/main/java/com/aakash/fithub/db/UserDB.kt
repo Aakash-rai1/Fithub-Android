@@ -16,6 +16,7 @@ version = 2
 )
 
 abstract class
+
 UserDB:RoomDatabase() {
 abstract fun getUserDAO():UserDAO
 abstract fun getWorkOutDAO():WorkoutDAO

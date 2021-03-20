@@ -1,8 +1,11 @@
 package com.aakash.fithub.api
 
 import com.aakash.fithub.entity.User
+import com.aakash.fithub.response.ImageResponse
 import com.aakash.fithub.response.LoginResponse
 import com.aakash.fithub.response.RegisterResponse
+import com.aakash.fithub.response.UserUpdateResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -19,5 +22,21 @@ UserApi {
 //        @Field("email") email:String,
 //        @Field("password") password:String
     ):Response<LoginResponse>
+
+    @PUT("update/user/{id}")
+    suspend fun updateUser(
+        @Header("Authorization") token: String,
+//        @Path("id") id: String,
+        @Body user: User
+
+    ): Response<UserUpdateResponse>
+
+    @Multipart
+    @POST("user/{id}/photo")
+    suspend fun  uploadImage(
+        @Header("Authorization") token: String,
+        @Path("id") id:String,
+        @Part file: MultipartBody.Part
+    ): Response<ImageResponse>
 
 }
