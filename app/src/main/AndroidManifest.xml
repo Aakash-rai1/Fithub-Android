@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aakash.fithub">
-    
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,22 +19,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitHub"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".fragments.CalculationActivity" />
+        <activity android:name=".YoutubePlayerActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity
+            android:name=".WorkoutViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragments.CalculationActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".object.NotificationActivity" />
-        <activity android:name=".object.SplashActivity">
+        <activity
+            android:name=".object.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SliderActivity" />
-        <activity android:name=".object.RegisterActivity" />
-        <activity android:name=".object.LoginActivity"></activity>
+        <activity
+            android:name=".SliderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".object.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".object.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.FitHub"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,15 +1,18 @@
 package com.aakash.fithub.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
+import com.aakash.fithub.`object`.LoginActivity
 import com.aakash.fithub.adapter.WorkoutHomeAdapter
 import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.entity.Workout
@@ -24,6 +27,7 @@ import kotlinx.coroutines.withContext
 
 
 class HomeFragment : Fragment() {
+
 
     val sampleImages= intArrayOf(
         R.drawable.c1,
@@ -47,6 +51,8 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
 
         carouselView=view.findViewById(R.id.carousel)
 
@@ -85,6 +91,8 @@ class HomeFragment : Fragment() {
                     "Error : ${ex.toString()}", Toast.LENGTH_SHORT
             ).show()
         }
+
+
 
     }
 }
