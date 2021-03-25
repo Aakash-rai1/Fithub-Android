@@ -1,4 +1,4 @@
-package com.aakash.fithub.api
+package api
 
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.response.ImageResponse
@@ -30,6 +30,13 @@ UserApi {
         @Body user: User
 
     ): Response<UserUpdateResponse>
+
+    @GET("user/view/{id}")
+    suspend fun viewUser(
+            @Header("Authorization") token: String,
+        @Path("id") id: String,
+           // @Body user: User
+    ): Response<LoginResponse>
 
     @Multipart
     @POST("user/{id}/photo")

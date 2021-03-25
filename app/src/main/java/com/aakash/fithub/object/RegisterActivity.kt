@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             R.id.login -> {
                 val intent = Intent(this, LoginActivity::class.java )
                 startActivity(intent)
-                finish()
+
             }
         }
     }

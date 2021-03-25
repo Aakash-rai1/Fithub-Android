@@ -2,21 +2,20 @@ package com.aakash.fithub.`object`
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.opengl.ETC1.isValid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import com.aakash.fithub.MainActivity
 import com.aakash.fithub.R
-import com.aakash.fithub.api.ServiceBuilder
+import api.ServiceBuilder
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -98,14 +97,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun login() {
         val email = etUserName.text.toString()
         val password = etPassword.text.toString()
-        Toast.makeText(this, "${email + password}", Toast.LENGTH_SHORT).show()
         val user= User(email=email,password = password)
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val repository = UserRepository()
                 val response = repository.checkUser(user = user)
                 if (response.success == true) {
-                    ServiceBuilder.token = "Bearer " + response.token
+                    ServiceBuilder.token = "Bearer " + response.token!!
+                    ServiceBuilder.id=response.id!!
+                    withContext(Main){
+                        Toast.makeText(this@LoginActivity, "${ServiceBuilder.token}", Toast.LENGTH_SHORT).show()
+                    }
                     startActivity(
                             Intent(
                                     this@LoginActivity,
