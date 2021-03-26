@@ -1,7 +1,8 @@
-package com.aakash.fithub
+package com.aakash.fithub.`object`
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.aakash.fithub.R
 
 class WorkoutViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

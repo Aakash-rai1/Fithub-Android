@@ -1,4 +1,4 @@
-package api
+package com.aakash.fithub.api
 
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.response.ImageResponse

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import adapter.NotificationChannels
+import com.aakash.fithub.adapter.NotificationChannels
 import com.aakash.fithub.R
 
 class NotificationActivity : AppCompatActivity() {

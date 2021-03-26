@@ -1,4 +1,4 @@
-package adapter
+package com.aakash.fithub.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
-import com.aakash.fithub.YoutubePlayerActivity
-import api.ServiceBuilder
+import com.aakash.fithub.`object`.YoutubePlayerActivity
+import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.Workout
 import com.bumptech.glide.Glide
 

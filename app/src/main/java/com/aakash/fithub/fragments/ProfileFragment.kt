@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.aakash.fithub.EditProfileActivity
+import com.aakash.fithub.`object`.EditProfileActivity
 import com.aakash.fithub.R
-import api.ServiceBuilder
+import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

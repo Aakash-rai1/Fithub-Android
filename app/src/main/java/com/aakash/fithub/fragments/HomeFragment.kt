@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
-import adapter.WorkoutHomeAdapter
+import com.aakash.fithub.adapter.WorkoutHomeAdapter
 import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.entity.Workout
 import com.aakash.fithub.repository.WorkOutRepository

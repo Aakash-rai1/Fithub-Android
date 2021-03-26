@@ -7,9 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
-import com.aakash.fithub.MainActivity
 import com.aakash.fithub.R
-import api.ServiceBuilder
+import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import com.google.android.material.snackbar.Snackbar

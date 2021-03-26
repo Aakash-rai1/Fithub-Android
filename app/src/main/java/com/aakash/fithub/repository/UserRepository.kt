@@ -1,9 +1,9 @@
 
 package com.aakash.fithub.repository
 
-import api.MyApiRequest
-import api.ServiceBuilder
-import api.UserApi
+import com.aakash.fithub.api.MyApiRequest
+import com.aakash.fithub.api.ServiceBuilder
+import com.aakash.fithub.api.UserApi
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.response.ImageResponse
 import com.aakash.fithub.response.LoginResponse

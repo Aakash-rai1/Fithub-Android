@@ -1,4 +1,4 @@
-package com.aakash.fithub
+package com.aakash.fithub.`object`
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
+import com.aakash.fithub.R
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope

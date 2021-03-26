@@ -1,4 +1,4 @@
-package api
+package com.aakash.fithub.api
 
 import android.widget.Toast
 import org.json.JSONException

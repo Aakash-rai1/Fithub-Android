@@ -2,11 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aakash.fithub">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -19,10 +24,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitHub"
         android:usesCleartextTraffic="true">
-        <activity android:name=".YoutubePlayerActivity"></activity>
-        <activity android:name=".EditProfileActivity" />
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".object.YoutubePlayerActivity" />
+        <activity android:name=".object.EditProfileActivity" />
         <activity
-            android:name=".WorkoutViewActivity"
+            android:name=".object.WorkoutViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".fragments.CalculationActivity"
@@ -38,7 +56,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SliderActivity"
+            android:name=".object.SliderActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".object.RegisterActivity"
@@ -47,7 +65,7 @@
             android:name=".object.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".object.MainActivity"
             android:screenOrientation="portrait" />
     </application>
 

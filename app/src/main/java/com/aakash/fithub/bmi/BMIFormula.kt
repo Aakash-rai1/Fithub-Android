@@ -1,4 +1,4 @@
-package com.aakash.fithub
+package com.aakash.fithub.bmi
 
 class BMIFormula {
     var height: Float=0F

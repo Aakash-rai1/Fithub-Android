@@ -1,24 +1,20 @@
-package com.aakash.fithub
+package com.aakash.fithub.`object`
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.aakash.fithub.R
 import com.aakash.fithub.entity.Workout
-import com.aakash.fithub.fragments.BmiFragment
-import com.aakash.fithub.fragments.HomeFragment
-import com.aakash.fithub.fragments.ProfileFragment
-import com.aakash.fithub.fragments.WorkoutFragment
+import com.aakash.fithub.fragments.*
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -49,11 +45,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val workoutFragment = WorkoutFragment()
         val profileFragment = ProfileFragment()
         val bmiFragment= BmiFragment()
+        val MapsFragment= MapsFragment()
 
         drawer=findViewById(R.id.drawer_layout);
       
 
-       toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close )
+       toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(toggleAction);
         toggleAction.syncState()
 
@@ -72,10 +69,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.plans->{makeCurrentFragment(homeFragment)}
+                R.id.maps ->{makeCurrentFragment(MapsFragment)}
             }
             when(it.itemId){
-                R.id.bmi->{makeCurrentFragment(bmiFragment)}
+                R.id.bmi ->{makeCurrentFragment(bmiFragment)}
             }
             true
         }

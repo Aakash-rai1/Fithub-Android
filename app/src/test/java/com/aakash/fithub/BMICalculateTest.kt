@@ -1,5 +1,6 @@
 package com.aakash.fithub
 
+import com.aakash.fithub.bmi.BMIFormula
 import org.junit.Assert
 import org.junit.Test
 
