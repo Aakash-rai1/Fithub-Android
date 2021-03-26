@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".fragments.BmiFragment">
 
     <TextView
-        android:layout_marginTop="70dp"
+
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,14 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your height (m)"
-        android:layout_margin="30dp"/>
+        android:layout_margin="30dp"
+        android:inputType="number"/>
 
     <EditText
         android:id="@+id/etWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your weight (kg)"
-        android:layout_margin="30dp"/>
+        android:layout_margin="30dp"
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/btnCalculate"

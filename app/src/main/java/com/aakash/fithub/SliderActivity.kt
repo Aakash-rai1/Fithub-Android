@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.aakash.fithub.`object`.LoginActivity
-import com.aakash.fithub.adapter.IntroSliderAdapter
+import adapter.IntroSliderAdapter
 import com.google.android.material.button.MaterialButton
 
 class SliderActivity : AppCompatActivity() {

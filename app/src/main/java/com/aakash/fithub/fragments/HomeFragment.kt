@@ -1,19 +1,15 @@
 package com.aakash.fithub.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
-import com.aakash.fithub.`object`.LoginActivity
-import com.aakash.fithub.adapter.WorkoutHomeAdapter
+import adapter.WorkoutHomeAdapter
 import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.entity.Workout
 import com.aakash.fithub.repository.WorkOutRepository

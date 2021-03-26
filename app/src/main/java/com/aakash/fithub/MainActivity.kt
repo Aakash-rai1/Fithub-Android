@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.aakash.fithub.entity.Workout
 import com.aakash.fithub.fragments.BmiFragment
 import com.aakash.fithub.fragments.HomeFragment
 import com.aakash.fithub.fragments.ProfileFragment
@@ -20,15 +22,16 @@ import com.aakash.fithub.fragments.WorkoutFragment
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var doubleBackToExitPressedOnce = false
-
-
     private lateinit var bottomNavigation: BottomNavigationView
     lateinit var linear: LinearLayout
     private lateinit var toolbar: Toolbar
+
+
     private lateinit var drawer: DrawerLayout
     lateinit var toggleAction: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
@@ -38,12 +41,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val arrayList=ArrayList<Workout>()
+
+        arrayList.add(Workout())
+
         val homeFragment = HomeFragment()
         val workoutFragment = WorkoutFragment()
         val profileFragment = ProfileFragment()
         val bmiFragment= BmiFragment()
 
         drawer=findViewById(R.id.drawer_layout);
+      
 
        toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close )
         drawer.addDrawerListener(toggleAction);
@@ -137,5 +145,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
 
     }
+
+
 
 }

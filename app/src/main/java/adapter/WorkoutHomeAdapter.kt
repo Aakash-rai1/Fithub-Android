@@ -1,28 +1,19 @@
-package com.aakash.fithub.adapter
+package adapter
 
 import android.content.Context
 import android.content.Intent
-import android.provider.SyncStateContract.Helpers.update
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
-import com.aakash.fithub.EditProfileActivity
 import com.aakash.fithub.R
 import com.aakash.fithub.YoutubePlayerActivity
-import com.aakash.fithub.api.ServiceBuilder
+import api.ServiceBuilder
 import com.aakash.fithub.entity.Workout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Glide.init
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class WorkoutHomeAdapter (
         private val data: ArrayList<Workout>,
@@ -53,6 +44,10 @@ class WorkoutHomeAdapter (
 
                 if (position==1){
                     Toast.makeText(view.context,"1",Toast.LENGTH_SHORT).show()
+                }
+
+                if (position==2){
+                    Toast.makeText(view.context,"2",Toast.LENGTH_SHORT).show()
                 }
                 if (position==3){
                     val intent = Intent (view.context, YoutubePlayerActivity::class.java)

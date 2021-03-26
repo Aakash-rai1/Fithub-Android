@@ -1,13 +1,12 @@
 package com.aakash.fithub.`object`
 
-import android.app.NotificationManager
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.aakash.fithub.NotificationChannels
+import adapter.NotificationChannels
 import com.aakash.fithub.R
 
 class NotificationActivity : AppCompatActivity() {

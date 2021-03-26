@@ -1,4 +1,4 @@
-package com.aakash.fithub.adapter
+package adapter
 
 import android.view.LayoutInflater
 import android.view.View

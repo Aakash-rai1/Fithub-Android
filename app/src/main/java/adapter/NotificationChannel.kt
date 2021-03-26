@@ -1,4 +1,4 @@
-package com.aakash.fithub
+package adapter
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
