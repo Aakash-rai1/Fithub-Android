@@ -1,5 +1,6 @@
 package com.aakash.fithub.`object`
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -86,7 +87,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signup -> {
                 val intent= Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
-                finish()
+
             }
 
 
@@ -94,6 +95,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun login() {
+        saveData()
         val email = etUserName.text.toString()
         val password = etPassword.text.toString()
         val user= User(email=email,password = password)
@@ -105,7 +107,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     ServiceBuilder.token = "Bearer " + response.token!!
                     ServiceBuilder.id=response.id!!
                     withContext(Main){
-                        Toast.makeText(this@LoginActivity, "${ServiceBuilder.token}", Toast.LENGTH_SHORT).show()
+
                     }
                     startActivity(
                             Intent(
@@ -138,5 +140,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun saveData() {
+        if(etUserName.text.isEmpty()){
+            etUserName.error="Please enter Email"
+            return
+        }
+
+        if(etPassword.text.isEmpty()){
+            etPassword.error="Please enter Password"
+            return
+        }
+
+
     }
 }
