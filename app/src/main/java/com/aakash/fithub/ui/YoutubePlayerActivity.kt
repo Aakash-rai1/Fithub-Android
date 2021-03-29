@@ -1,4 +1,4 @@
-package com.aakash.fithub.`object`
+package com.aakash.fithub.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

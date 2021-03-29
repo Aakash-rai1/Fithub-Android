@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".object.YoutubePlayerActivity">
+    tools:context=".ui.YoutubePlayerActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Arms Workout"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"
-        android:layout_margin="10dp"/>
+        android:layout_margin="2dp"/>
 
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView

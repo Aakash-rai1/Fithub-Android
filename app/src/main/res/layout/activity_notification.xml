@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".object.NotificationActivity">
+    tools:context=".ui.NotificationActivity">
 
     <Button
         android:id="@+id/btnNotification1"

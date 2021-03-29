@@ -1,13 +1,11 @@
-package com.aakash.fithub.`object`
+package com.aakash.fithub.ui
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.aakash.fithub.R
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
@@ -16,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RegisterActivity : AppCompatActivity(), View.OnClickListener {
+class RegisterActivity : AppCompatActivity() {
 
     private lateinit var etEmail: EditText
     private lateinit var etfname: EditText
@@ -24,50 +22,48 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var etPassword: EditText
     private lateinit var etCPassword: EditText
     private lateinit var btnRegister: Button
-    private lateinit var login: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        etfname=findViewById(R.id.etfname)
-        etlname=findViewById(R.id.etlname)
-        etEmail=findViewById(R.id.etEmail)
-        etPassword=findViewById(R.id.etPassword)
-        etCPassword=findViewById(R.id.etCPassword)
-        btnRegister=findViewById(R.id.btnRegister)
-        login=findViewById(R.id.login)
+        etfname = findViewById(R.id.etfname)
+        etlname = findViewById(R.id.etlname)
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPassword)
+        etCPassword = findViewById(R.id.etCPassword)
+        btnRegister = findViewById(R.id.btnRegister)
 
-        btnRegister.setOnClickListener(){
+
+        btnRegister.setOnClickListener() {
             signupwithApi()
         }
     }
 
     private fun signupwithApi() {
-        val fname=etfname.text.toString()
-        val lname=etlname.text.toString()
-        val email=etEmail.text.toString()
-        val password=etPassword.text.toString()
-        val cpassword=etCPassword.text.toString()
-        if(password==cpassword){
-            val user = User(fname=fname, lname= lname, email = email, password = password )
+        val fname = etfname.text.toString()
+        val lname = etlname.text.toString()
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        val cpassword = etCPassword.text.toString()
+        if (password == cpassword) {
+            val user = User(fname = fname, lname = lname, email = email, password = password)
             CoroutineScope(Dispatchers.IO).launch {
-                val repository= UserRepository()
-                val response= repository.registerUSer(user)
+                val repository = UserRepository()
+                val response = repository.registerUSer(user)
                 if (response.success == true) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@RegisterActivity, "Signup Successful", Toast.LENGTH_SHORT).show()
                         clear()
                     }
-                }
-                else {
+                } else {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@RegisterActivity, "Error Register", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity, "An error has occured", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-        }
-        else{
+        } else {
             Toast.makeText(this, "p and cP is not same", Toast.LENGTH_SHORT).show()
         }
     }
@@ -80,13 +76,5 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         etCPassword.setText("")
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.login -> {
-                val intent = Intent(this, LoginActivity::class.java )
-                startActivity(intent)
 
-            }
-        }
-    }
 }

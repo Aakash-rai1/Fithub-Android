@@ -2,7 +2,7 @@ package com.aakash.fithub
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
-import com.aakash.fithub.`object`.MainActivity
+import com.aakash.fithub.ui.MainActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4

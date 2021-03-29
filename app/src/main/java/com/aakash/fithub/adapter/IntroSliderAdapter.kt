@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.aakash.fithub.IntroSlide
+import com.aakash.fithub.response.IntroSlide
 import com.aakash.fithub.R
 
 class IntroSliderAdapter(private val introSlides: List<IntroSlide>):

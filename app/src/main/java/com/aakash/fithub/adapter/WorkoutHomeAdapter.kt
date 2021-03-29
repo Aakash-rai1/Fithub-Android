@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
-import com.aakash.fithub.`object`.YoutubePlayerActivity
+import com.aakash.fithub.ui.YoutubePlayerActivity
 import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.Workout
 import com.bumptech.glide.Glide

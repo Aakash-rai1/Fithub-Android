@@ -50,7 +50,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your BMI is "
+        android:text=" "
         android:textSize="25dp"
         android:textStyle="italic"
         android:gravity="center"

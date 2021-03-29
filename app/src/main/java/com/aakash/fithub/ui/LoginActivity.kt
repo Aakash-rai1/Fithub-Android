@@ -1,12 +1,13 @@
-package com.aakash.fithub.`object`
+package com.aakash.fithub.ui
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
@@ -15,7 +16,6 @@ import com.aakash.fithub.repository.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -34,20 +34,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var signup: Button
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        etUserName=findViewById(R.id.etUserName)
-        etPassword=findViewById(R.id.etPassword)
-        btnLogin=findViewById(R.id.btnLogin)
-        signup=findViewById(R.id.signup)
-        LinearLayout=findViewById(R.id.layout)
+        etUserName = findViewById(R.id.etUserName)
+        etPassword = findViewById(R.id.etPassword)
+        btnLogin = findViewById(R.id.btnLogin)
+        signup = findViewById(R.id.signup)
+        LinearLayout = findViewById(R.id.layout)
 
 
         checkRunTimePermission()
 
-        btnLogin.setOnClickListener{
+        btnLogin.setOnClickListener {
             login()
         }
         signup.setOnClickListener(this)
@@ -60,6 +59,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             requestPermission()
         }
     }
+
     private fun hasPermission(): Boolean {
         var hasPermission = true
         for (permission in permissions) {
@@ -80,12 +80,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
 
             R.id.signup -> {
-                val intent= Intent(this, RegisterActivity::class.java)
+                val intent = Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
 
             }
@@ -96,19 +95,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun login() {
         saveData()
-        val email = etUserName.text.toString()
-        val password = etPassword.text.toString()
-        val user= User(email=email,password = password)
+        var user = User(email = etUserName.text.toString(), password = etPassword.text.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val repository = UserRepository()
                 val response = repository.checkUser(user = user)
                 if (response.success == true) {
+                    saveSharedPref(email = etUserName.text.toString(), password = etPassword.text.toString())
                     ServiceBuilder.token = "Bearer " + response.token!!
-                    ServiceBuilder.id=response.id!!
-                    withContext(Main){
-
-                    }
+                    ServiceBuilder.id = response.id!!
                     startActivity(
                             Intent(
                                     this@LoginActivity,
@@ -117,17 +112,23 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     )
                     finish()
                 } else {
-                    withContext(Dispatchers.Main) {
-                        val snack =
-                                Snackbar.make(
-                                        LinearLayout,
-                                        "Invalid credentials",
-                                        Snackbar.LENGTH_LONG
-                                )
-                        snack.setAction("OK", View.OnClickListener {
-                            snack.dismiss()
-                        })
-                        snack.show()
+                    withContext(Dispatchers.IO) {
+
+                        val snackBar = Snackbar.make(
+                                LinearLayout, "Replace with your own action",
+                                Snackbar.LENGTH_LONG
+                        ).setAction("Action", null)
+                        snackBar.setActionTextColor(Color.BLUE)
+                        val snackBarView = snackBar.view
+                        snackBarView.setBackgroundColor(Color.CYAN)
+                        val textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+                        textView.setTextColor(Color.BLUE)
+                        snackBar.show()
+//                        val snack = Snackbar.make(LinearLayout, "Invalid Credentials", Snackbar.LENGTH_LONG)
+//                        snack.setAction("ok", View.OnClickListener {
+//                            snack.dismiss()
+//                        })
+//                        snack.show()
                     }
                 }
 
@@ -143,16 +144,24 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun saveData() {
-        if(etUserName.text.isEmpty()){
-            etUserName.error="Please enter Email"
+        if (etUserName.text.isEmpty()) {
+            etUserName.error = "Please enter Email"
             return
         }
 
-        if(etPassword.text.isEmpty()){
-            etPassword.error="Please enter Password"
+        if (etPassword.text.isEmpty()) {
+            etPassword.error = "Please enter Password"
             return
         }
 
 
+    }
+
+    fun Activity.saveSharedPref(email: String, password: String) {
+        val sharedPref = getSharedPreferences("MyPref", AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("email", email)
+        editor.putString("password", password)
+        editor.apply()
     }
 }

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".object.LoginActivity">
+    tools:context=".ui.LoginActivity">
 
 
     <TextView
@@ -90,15 +90,7 @@
         android:textSize="18sp"
         app:backgroundTint="#3cb043" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="25dp"
-        android:text="Already have an account? Login"
-        android:textColor="@color/white"
-        />
+
 
 
 </LinearLayout>

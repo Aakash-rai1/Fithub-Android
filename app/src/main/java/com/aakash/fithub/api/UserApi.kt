@@ -19,8 +19,6 @@ UserApi {
     @POST("user/login")
     suspend fun checkUser(
             @Body users: User
-//        @Field("email") email:String,
-//        @Field("password") password:String
     ):Response<LoginResponse>
 
     @PUT("update/user/{id}")

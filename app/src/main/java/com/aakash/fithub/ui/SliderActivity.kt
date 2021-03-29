@@ -1,4 +1,4 @@
-package com.aakash.fithub.`object`
+package com.aakash.fithub.ui
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
-import com.aakash.fithub.IntroSlide
+import com.aakash.fithub.response.IntroSlide
 import com.aakash.fithub.R
 import com.aakash.fithub.adapter.IntroSliderAdapter
 import com.google.android.material.button.MaterialButton

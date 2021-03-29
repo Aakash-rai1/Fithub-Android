@@ -1,11 +1,11 @@
 package com.aakash.fithub.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
@@ -25,15 +25,15 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
 
 
-    val sampleImages= intArrayOf(
-        R.drawable.c1,
-        R.drawable.c2,
-        R.drawable.c3,
-        R.drawable.c4
+    val sampleImages = intArrayOf(
+            R.drawable.c1,
+            R.drawable.c2,
+            R.drawable.c3,
+            R.drawable.c4
 
     )
 
-    val imageListener= ImageListener { position, imageView ->
+    val imageListener = ImageListener { position, imageView ->
         imageView.setImageResource(sampleImages[position])
 
     }
@@ -42,36 +42,34 @@ class HomeFragment : Fragment() {
     private lateinit var homeWorkOutrec: RecyclerView
 
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
 
 
-        carouselView=view.findViewById(R.id.carousel)
+        carouselView = view.findViewById(R.id.carousel)
 
-        carouselView.pageCount=sampleImages.size
+        carouselView.pageCount = sampleImages.size
         carouselView.setImageListener(imageListener)
 
-        homeWorkOutrec=view.findViewById(R.id.homeWorkOutrec)
+        homeWorkOutrec = view.findViewById(R.id.homeWorkOutrec)
 
         getData()
         return view;
     }
-    fun getData(){
-        try{
+
+    fun getData() {
+        try {
             CoroutineScope(Dispatchers.IO).launch {
                 val WorkOutRepository = WorkOutRepository()
                 val response = WorkOutRepository.getWorkOutApiData()
-                if(response.success==true){
-                    withContext(Main){
+                if (response.success == true) {
+                    withContext(Main) {
                         println(response)
                         val workoutitemlist = response.data
                         UserDB.getInstance(requireContext()).getWorkOutDAO().deleteWorkOutData()
                         UserDB.getInstance(requireContext()).getWorkOutDAO().insertWorkOutData(response.data)
-                        Toast.makeText(context, "$workoutitemlist", Toast.LENGTH_SHORT).show()
                         val adapter = WorkoutHomeAdapter(
                                 workoutitemlist as ArrayList<Workout>,
                                 requireContext()
@@ -81,13 +79,12 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             Toast.makeText(
                     context,
                     "Error : ${ex.toString()}", Toast.LENGTH_SHORT
             ).show()
         }
-
 
 
     }

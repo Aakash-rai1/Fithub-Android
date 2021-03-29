@@ -1,4 +1,4 @@
-package com.aakash.fithub
+package com.aakash.fithub.response
 
 import android.content.ClipDescription
 

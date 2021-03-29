@@ -46,8 +46,8 @@ class BmiFragment : Fragment() {
             val bmi=calc.bmi()
 
             bmiResult.setText("Your BMI Index is $bmi")
-//            Toast.makeText(this,"$bmi", Toast.LENGTH_SHORT).show()
-        Toast.makeText(activity,"$bmi",Toast.LENGTH_SHORT).show()
+
+
 
         }
         return view

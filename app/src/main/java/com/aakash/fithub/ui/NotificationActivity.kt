@@ -1,4 +1,4 @@
-package com.aakash.fithub.`object`
+package com.aakash.fithub.ui
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
