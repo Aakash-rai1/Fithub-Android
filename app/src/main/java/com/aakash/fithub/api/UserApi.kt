@@ -29,7 +29,7 @@ UserApi {
 
     ): Response<UserUpdateResponse>
 
-    @GET("user/view/{id}")
+    @GET("user/single/{id}")
     suspend fun viewUser(
             @Header("Authorization") token: String,
         @Path("id") id: String,
