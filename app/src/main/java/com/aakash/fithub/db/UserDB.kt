@@ -21,6 +21,7 @@ UserDB:RoomDatabase() {
 abstract fun getUserDAO():UserDAO
 abstract fun getWorkOutDAO():WorkoutDAO
 
+
 companion object{
 @Volatile
     private var instance:UserDB?= null

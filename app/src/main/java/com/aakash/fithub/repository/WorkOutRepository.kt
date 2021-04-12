@@ -12,4 +12,11 @@ class WorkOutRepository : MyApiRequest(){
             WorkoutApi.addWorkout(ServiceBuilder.token!!)
         }
     }
+
+
+    suspend fun getallProduct(id:String): WorkOutResponse {
+        return apiRequest {
+            WorkoutApi.getallWorkout(ServiceBuilder.token!!,id!!)
+        }
+    }
 }

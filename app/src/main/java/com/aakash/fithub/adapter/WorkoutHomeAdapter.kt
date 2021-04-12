@@ -26,10 +26,13 @@ class WorkoutHomeAdapter (
          val name: TextView;
          val program: TextView;
          val imageView: ImageView;
+         val imagefav: ImageView;
          init {
              name= view.findViewById(R.id.wname)
              program= view.findViewById(R.id.program)
              imageView=view.findViewById(R.id.imageView)
+             imagefav=view.findViewById(R.id.image_fav)
+
          }
 
 
@@ -38,8 +41,6 @@ class WorkoutHomeAdapter (
                 val position: Int= adapterPosition
                 if (position==0){
                     Toast.makeText(view.context,"0",Toast.LENGTH_SHORT).show()
-//                    val intent = Intent (view.context, YoutubePlayerActivity::class.java)
-//                    view.context.startActivity(intent)
                 }
 
                 if (position==1){
@@ -54,11 +55,6 @@ class WorkoutHomeAdapter (
                     view.context.startActivity(intent)
                 }
 
-
-
-//                    val intent = Intent (view.context, YoutubePlayerActivity::class.java)
-//
-//                    view.context.startActivity(intent)
 
             }
         }
@@ -85,7 +81,10 @@ class WorkoutHomeAdapter (
             }
 
 
+
     }
+
+
 
     override fun getItemCount(): Int {
         return listWorkout.size;

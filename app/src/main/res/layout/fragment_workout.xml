@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="3sp"
     tools:context=".fragments.WorkoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="workout"
-        android:textSize="50dp"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/favRecycler"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/favSearch"
+        android:layout_height="match_parent"/>
 </FrameLayout>

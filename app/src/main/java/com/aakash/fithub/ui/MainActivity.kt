@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var doubleBackToExitPressedOnce = false
     private lateinit var bottomNavigation: BottomNavigationView
     lateinit var linear: LinearLayout
-    private lateinit var toolbar: Toolbar
-
-
     private lateinit var drawer: DrawerLayout
     lateinit var toggleAction: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val MapsFragment= MapsFragment()
 
         drawer=findViewById(R.id.drawer_layout);
-      
+
 
        toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(toggleAction);
@@ -59,8 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         linear =findViewById(R.id.linear)
-        toolbar=findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar);
 
         navView= findViewById(R.id.navView)
 
@@ -103,6 +98,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggleAction.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
