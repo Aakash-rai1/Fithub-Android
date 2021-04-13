@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView= findViewById(R.id.navView)
 
 
+
         //fragments from slider menu
         navView.setNavigationItemSelectedListener(this)
         navView.setNavigationItemSelectedListener {

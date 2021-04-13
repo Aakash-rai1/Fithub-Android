@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:paddingBottom="20dp">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +50,7 @@
              />
 
         <EditText
-            android:id="@+id/etAge"
+            android:id="@+id/etemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -61,51 +59,17 @@
             android:layout_marginBottom="-96dp"
             android:height="50dp"
             android:gravity="center"
-            android:hint="Age"
+            android:hint="Email"
             android:inputType="number" />
 
 
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:layout_marginLeft="25dp"
-            android:id="@+id/radioGroup">
-
-            <RadioButton
-                android:id="@+id/radioMale"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="  Male"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/radioFemale"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="   Female"
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-            <RadioButton
-                android:id="@+id/radioOther"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="   Other"
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-        </RadioGroup>
         <Button
             android:id="@+id/btnDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="120dp"
             android:text="Done" />
 
     </LinearLayout>
-</ScrollView>
+

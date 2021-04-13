@@ -6,6 +6,6 @@ data class LoginResponse (
     val success:Boolean?=null,
     val token:String?=null,
     val id:String?=null,
-    val data:User?=null,
+    val data:List<User>?=null,
     val message:String?=null
 )

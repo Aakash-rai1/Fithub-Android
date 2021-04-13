@@ -29,12 +29,8 @@ import java.util.*
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var etFirstname: EditText
-    private lateinit var etAge: EditText
+    private lateinit var etemail: EditText
     private lateinit var etLastname: EditText
-    private lateinit var radioGroup: RadioGroup
-    private lateinit var radioMale: RadioButton
-    private lateinit var radioFemale: RadioButton
-    private lateinit var radioOther: RadioButton
     private lateinit var btnDone: Button
     private lateinit var imgAdd: ImageView
 
@@ -48,16 +44,11 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
 
         etFirstname= findViewById(R.id.etFirstname)
-        etAge= findViewById(R.id.etAge)
+        etemail= findViewById(R.id.etemail)
         etLastname= findViewById(R.id.etLastname)
-        radioGroup= findViewById(R.id.radioGroup)
-        radioMale= findViewById(R.id.radioMale)
-        radioFemale= findViewById(R.id.radioFemale)
-        radioOther= findViewById(R.id.radioOther)
         btnDone= findViewById(R.id.btnDone)
         imgAdd= findViewById(R.id.imgAdd)
 
-        selectGender()
         btnDone.setOnClickListener {
 
             editprofilebtn()
@@ -73,7 +64,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         val firstname = etFirstname.text.toString()
         val lastname = etLastname.text.toString()
-        val age = etAge.text.toString().toInt()
+        val email = etemail.text.toString()
         val image = imgAdd.toString()
 
 
@@ -81,7 +72,7 @@ class EditProfileActivity : AppCompatActivity() {
         val gender = usergender
 
         val userData =
-            User(fname = firstname, age = age, lname = lastname, gender = gender)
+            User(fname = firstname, email = email, lname = lastname)
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -114,28 +105,11 @@ class EditProfileActivity : AppCompatActivity() {
 
     fun clear() {
         etFirstname.setText("")
-        etAge.setText("")
+        etemail.setText("")
         etLastname.setText("")
-        radioMale.isChecked = false
-        radioFemale.isChecked = false
-        radioOther.isChecked = false
     }
 
-    private fun selectGender() {
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioMale -> {
-                    usergender = radioMale.text.toString()
-                }
-                R.id.radioFemale -> {
-                    usergender = radioFemale.text.toString()
-                }
-                R.id.radioOther -> {
-                    usergender = radioOther.text.toString()
-                }
-            }
-        }
-    }
+
 
     // Load pop up menu
     private fun loadPopUpMenu() {
