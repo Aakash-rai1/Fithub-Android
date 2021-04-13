@@ -86,9 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.icHome ->{makeCurrentFragment(homeFragment)
                     true
                 }
-                R.id.icWorkout ->{makeCurrentFragment(workoutFragment)
-                    true
-                }
+
                 R.id.icProfile ->{makeCurrentFragment(profileFragment)
                     true
                 }

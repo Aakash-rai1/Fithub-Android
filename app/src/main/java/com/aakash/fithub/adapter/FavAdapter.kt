@@ -2,11 +2,15 @@ package com.aakash.fithub.adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
@@ -19,8 +23,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavAdapter (val listpost:ArrayList<ForFavProduct>,
-                  val context: Context): RecyclerView.Adapter<FavAdapter.FavviewHolder>() {
+
+class FavAdapter(
+    val listpost: ArrayList<ForFavProduct>,
+    val context: Context
+): RecyclerView.Adapter<FavAdapter.FavviewHolder>() {
     class FavviewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView
         val removeFav: ImageView
@@ -40,17 +47,19 @@ class FavAdapter (val listpost:ArrayList<ForFavProduct>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavviewHolder {
         val view= LayoutInflater.from(parent.context)
-                .inflate(R.layout.favproduct,parent,false)
+                .inflate(R.layout.favproduct, parent, false)
 
         return FavAdapter.FavviewHolder(view)
 
 
     }
 
+
+
     override fun onBindViewHolder(holder: FavviewHolder, position: Int) {
         val fav = listpost[position]
-        holder.wname.text="Area:"+fav.wname
-        holder.program.text="price:"+fav.program
+        holder.wname.text=fav.wname
+        holder.program.text=fav.program
 
         val imagePath = ServiceBuilder.loadImagepath() + fav.image
         if (!fav.image.equals("noimg")) {
@@ -61,9 +70,9 @@ class FavAdapter (val listpost:ArrayList<ForFavProduct>,
 
         holder.removeFav.setOnClickListener(){
             val builder= AlertDialog.Builder(context);
-            builder.setMessage("Do you want remove from fav")
+            builder.setMessage("Do you want remove the item from your favorites?")
             builder.setIcon(android.R.drawable.ic_dialog_alert);
-            builder.setPositiveButton("Yes"){dialogInterface,which->
+            builder.setPositiveButton("Yes"){ dialogInterface, which->
                 CoroutineScope(Dispatchers.IO).launch {
                     val repository= AddFavrepository()
                     val response=repository.deleteFavProduct(fav._id!!)
@@ -71,7 +80,11 @@ class FavAdapter (val listpost:ArrayList<ForFavProduct>,
                         withContext(Dispatchers.Main){
                             listpost.removeAt(position)
                             notifyDataSetChanged()
-                            val snack=  Snackbar.make(it,"${response.msg}.  remove from Fav", Snackbar.LENGTH_SHORT)
+                            val snack=  Snackbar.make(
+                                it,
+                                "${response.msg}.  Item removed from favorites",
+                                Snackbar.LENGTH_SHORT
+                            )
                             snack.setAction("Ok") {
                                 snack.dismiss()
                             }
@@ -81,8 +94,7 @@ class FavAdapter (val listpost:ArrayList<ForFavProduct>,
                     }
                 }
             }
-            builder.setNegativeButton("No"){
-                dialogInterface,which->
+            builder.setNegativeButton("No"){ dialogInterface, which->
             }
             builder.show()
         }

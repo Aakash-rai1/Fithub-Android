@@ -5,16 +5,18 @@
     android:layout_height="match_parent"
     android:padding="3sp"
     tools:context=".fragments.FavorateFragment">
-    <AutoCompleteTextView
-        android:id="@+id/favSearch"
-        android:layout_width="match_parent"
+    
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_fav"
-        android:drawableTint="@color/black"
-        android:hint="Search Your Favorite Interior"
-        />
+        android:text="My Favorites"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/favRecycle"
         android:layout_width="match_parent"
         android:layout_below="@+id/favSearch"
