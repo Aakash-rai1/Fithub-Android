@@ -2,6 +2,7 @@ package com.aakash.fithub.repository
 
 import com.aakash.fithub.api.MyApiRequest
 import com.aakash.fithub.api.ServiceBuilder
+import com.aakash.fithub.response.AddFavResponse
 import com.aakash.fithub.response.WorkOutResponse
 
 class WorkOutRepository : MyApiRequest(){
@@ -12,11 +13,17 @@ class WorkOutRepository : MyApiRequest(){
             WorkoutApi.addWorkout(ServiceBuilder.token!!)
         }
     }
-
-
-    suspend fun getallProduct(id:String): WorkOutResponse {
+    suspend fun getallProduct(id:String): AddFavResponse {
         return apiRequest {
-            WorkoutApi.getallWorkout(ServiceBuilder.token!!,id!!)
+            WorkoutApi.getallProduct(ServiceBuilder.token!!,id!!)
         }
     }
+
+//    suspend fun getallProduct(id:String): WorkOutResponse {
+//        return apiRequest {
+//            WorkoutApi.getallWorkout(ServiceBuilder.token!!,id!!)
+//        }
+//
+//    }
+
 }

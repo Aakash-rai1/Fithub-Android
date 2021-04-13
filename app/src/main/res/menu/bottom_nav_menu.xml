@@ -18,6 +18,11 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile"
         />
+    <item
+        android:id="@+id/fav"
+        android:icon="@drawable/ic_fav"
+        android:title="fav"
+        />
 
 
 </menu>

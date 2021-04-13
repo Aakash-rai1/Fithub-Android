@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="3sp"
+    tools:context=".fragments.FavorateFragment">
+    <AutoCompleteTextView
+        android:id="@+id/favSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_fav"
+        android:drawableTint="@color/black"
+        android:hint="Search Your Favorite Interior"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/favRecycle"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/favSearch"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

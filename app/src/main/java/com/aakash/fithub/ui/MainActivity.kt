@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val homeFragment = HomeFragment()
         val workoutFragment = WorkoutFragment()
         val profileFragment = ProfileFragment()
+        val favFragment = FavorateFragment()
         val bmiFragment= BmiFragment()
         val MapsFragment= MapsFragment()
 
@@ -89,6 +90,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     true
                 }
                 R.id.icProfile ->{makeCurrentFragment(profileFragment)
+                    true
+                }
+                R.id.fav ->{makeCurrentFragment(favFragment)
                     true
                 }
 

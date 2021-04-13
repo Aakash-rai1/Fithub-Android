@@ -7,6 +7,7 @@ import com.aakash.fithub.entity.Workout
 
 @Dao
 interface WorkoutDAO {
+
     @Query("Delete from Workout")
     suspend fun deleteWorkOutData()
     @Insert
