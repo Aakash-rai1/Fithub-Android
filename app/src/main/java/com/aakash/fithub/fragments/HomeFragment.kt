@@ -1,10 +1,19 @@
 package com.aakash.fithub.fragments
 
+import android.content.Context
+import android.content.Context.SENSOR_SERVICE
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +31,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SensorEventListener {
+
+    private lateinit var sensorManager: SensorManager
+    private var sensor: Sensor?= null
 
 
     val sampleImages = intArrayOf(
@@ -46,8 +58,6 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-
-
         carouselView = view.findViewById(R.id.carousel)
 
         carouselView.pageCount = sampleImages.size
@@ -55,9 +65,13 @@ class HomeFragment : Fragment() {
 
         homeWorkOutrec = view.findViewById(R.id.homeWorkOutrec)
 
+
+
         getData()
         return view;
     }
+
+
 
     fun getData() {
         try {
@@ -87,5 +101,13 @@ class HomeFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        TODO("Not yet implemented")
     }
 }

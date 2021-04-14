@@ -43,7 +43,9 @@
             android:name=".ui.WorkoutViewActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.NotificationActivity" />
+        <activity android:name=".ui.NotificationActivity">
+
+        </activity>
         <activity
             android:name=".ui.SplashActivity"
             android:screenOrientation="portrait">
@@ -52,6 +54,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.SliderActivity"

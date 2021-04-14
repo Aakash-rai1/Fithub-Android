@@ -66,6 +66,20 @@
         android:text="Edit Profile"
         android:textStyle="normal"
         android:textSize="20dp"
-        android:backgroundTint="@color/colorTextSecondary"/>
+        android:backgroundTint="@color/black"/>
+
+    <Button
+        android:layout_below="@id/editProfile"
+        android:layout_margin="8dp"
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Logout"
+        android:textStyle="normal"
+        android:textSize="20dp"
+        android:backgroundTint="#ea4c46"/>
+
+
+
 
 </RelativeLayout>

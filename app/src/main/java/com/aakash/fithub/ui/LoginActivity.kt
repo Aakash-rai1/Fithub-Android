@@ -3,7 +3,10 @@ package com.aakash.fithub.ui
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -19,13 +22,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener {
+class LoginActivity : AppCompatActivity(), SensorEventListener {
     private val permissions = arrayOf(
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.ACCESS_FINE_LOCATION
     )
 
+    private lateinit var sensorManager: SensorManager
+    private var sensor: Sensor?= null
 
     private lateinit var etUserName: EditText
     private lateinit var etPassword: EditText
@@ -37,11 +42,23 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
         etUserName = findViewById(R.id.etUserName)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
         signup = findViewById(R.id.signup)
         LinearLayout = findViewById(R.id.layout)
+
+        sensorManager= getSystemService(SENSOR_SERVICE) as SensorManager
+
+
+        if(!checkSensor())
+            return
+        else{
+            sensor= sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL  )
+        }
 
 
         checkRunTimePermission()
@@ -49,9 +66,38 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         btnLogin.setOnClickListener {
             login()
         }
-        signup.setOnClickListener(this)
+        signup.setOnClickListener {
+            signup()
+        }
 
 
+    }
+
+    private fun signup() {
+       val intent=Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun checkSensor(): Boolean {
+        var flag=true
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)==null){
+            flag= false
+        }
+        return flag
+
+    }
+
+    override fun onSensorChanged(event: SensorEvent?){
+        val values=event!!.values[1]
+        if (values<0)
+             signup()
+            else if (values>0)
+            Toast.makeText(this, "swap left", Toast.LENGTH_SHORT).show()
+                
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        TODO("Not yet implemented")
     }
 
     private fun checkRunTimePermission() {
@@ -80,18 +126,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
+//    override fun onClick(v: View?) {
+//        when (v?.id) {
+//
+//            R.id.signup -> {
+//                val intent = Intent(this, RegisterActivity::class.java)
+//                startActivity(intent)
+//
+//            }
+//
+//
+//        }
+//    }
 
-            R.id.signup -> {
-                val intent = Intent(this, RegisterActivity::class.java)
-                startActivity(intent)
-
-            }
-
-
-        }
-    }
 
     private fun login() {
         saveData()
@@ -111,24 +158,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             )
                     )
                     finish()
-                } else {
-                    withContext(Dispatchers.IO) {
+                }
 
-                        val snackBar = Snackbar.make(
-                                LinearLayout, "Replace with your own action",
-                                Snackbar.LENGTH_LONG
-                        ).setAction("Action", null)
-                        snackBar.setActionTextColor(Color.BLUE)
-                        val snackBarView = snackBar.view
-                        snackBarView.setBackgroundColor(Color.CYAN)
-                        val textView = snackBarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
-                        textView.setTextColor(Color.BLUE)
-                        snackBar.show()
-//                        val snack = Snackbar.make(LinearLayout, "Invalid Credentials", Snackbar.LENGTH_LONG)
-//                        snack.setAction("ok", View.OnClickListener {
-//                            snack.dismiss()
-//                        })
-//                        snack.show()
+                else {
+                    withContext(Dispatchers.Main) {
+                        val snack =
+                                Snackbar.make(
+                                        LinearLayout,
+                                        "Invalid credentials",
+                                        Snackbar.LENGTH_LONG
+                                )
+                        snack.setAction("OK", View.OnClickListener {
+                            snack.dismiss()
+                        })
+                        snack.show()
                     }
                 }
 

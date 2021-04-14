@@ -4,12 +4,15 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
@@ -50,8 +53,6 @@ class FavAdapter(
                 .inflate(R.layout.favproduct, parent, false)
 
         return FavAdapter.FavviewHolder(view)
-
-
     }
 
 
@@ -77,6 +78,7 @@ class FavAdapter(
                     val repository= AddFavrepository()
                     val response=repository.deleteFavProduct(fav._id!!)
                     if(response.success==true){
+                        showDeleteNotification()
                         withContext(Dispatchers.Main){
                             listpost.removeAt(position)
                             notifyDataSetChanged()
@@ -98,6 +100,19 @@ class FavAdapter(
             }
             builder.show()
         }
+    }
+
+    private fun showDeleteNotification() {
+        val notificationManager= NotificationManagerCompat.from(context)
+        val notificationChannels= NotificationChannels(context)
+        notificationChannels.createNotificationChannels()
+        val notification= NotificationCompat.Builder(context, notificationChannels.CHANNEL_1)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("Program Deleted")
+                .setContentText("Program deleted from favorites successfully.")
+                .setColor(Color.BLACK)
+                .build()
+        notificationManager.notify(2, notification)
     }
 
     override fun getItemCount(): Int {

@@ -39,8 +39,8 @@ class NotificationActivity : AppCompatActivity() {
 
         val notification= NotificationCompat.Builder(this, notificationChannels.CHANNEL_1)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle("low priority notification")
-                .setContentText("this is high priority")
+                .setContentTitle("Program Removed")
+                .setContentText("Program removed successfully.")
                 .setColor(Color.YELLOW)
                 .build()
         notificationManager.notify(2, notification)
@@ -54,8 +54,8 @@ class NotificationActivity : AppCompatActivity() {
 
         val notification= NotificationCompat.Builder(this, notificationChannels.CHANNEL_1)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle("high priority notification")
-                .setContentText("THis is low priority notification")
+                .setContentTitle("Favorite Added")
+                .setContentText("Program added to favorites successfully.")
                 .setColor(Color.YELLOW)
                 .build()
         notificationManager.notify(1, notification)

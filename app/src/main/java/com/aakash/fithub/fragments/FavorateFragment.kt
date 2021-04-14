@@ -61,28 +61,23 @@ class FavorateFragment : Fragment() {
     }
 
     private fun loadvlaue() {
-        var listNotes: List<ForFavProduct>?
+
         CoroutineScope(Dispatchers.IO).launch {
-            //-------- getting noteid---------------//
             val repository = AddFavrepository()
             val response = repository.getallFavProdcut(ServiceBuilder.id!!)
             if (response.success == true) {
                 val data = response.data
                 var allnoteid: String? = null
-                //------drop table-----------//
+
                 UserDB.getInstance(requireContext()).getFavDao().dropTable()
                 for (i in data!!.indices) {
                     allnoteid = data[i].productId
-                    //----------getting note from noteid------------/////////
                     val noteRepository = WorkOutRepository()
                     val noteResponse = noteRepository.getallProduct(allnoteid!!)
                     if (noteResponse.success == true) {
-                        //--------insert into table-----------------//
                         UserDB.getInstance(requireContext()).getFavDao().AddProdcut(noteResponse.data)
-                        // listNotes=(noteResponse.data)
                     }
                 }
-                //----------getting note from roomdatabase--------------//
                 val bookmarkedList = UserDB.getInstance(requireContext()).getFavDao().getproduct()
                 withContext(Dispatchers.Main) {
                     val adpater = context?.let { FavAdapter(bookmarkedList as ArrayList<ForFavProduct>, it) }

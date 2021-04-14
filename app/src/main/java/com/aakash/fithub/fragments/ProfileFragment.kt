@@ -10,11 +10,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
+import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.repository.UserRepository
 import com.aakash.fithub.ui.EditProfileActivity
+import com.aakash.fithub.ui.LoginActivity
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +32,7 @@ class ProfileFragment : Fragment() {
     private lateinit var userName: TextView
     private lateinit var useremail: TextView
     private lateinit var userImage: ImageView
+    private lateinit var logout: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -46,6 +51,7 @@ class ProfileFragment : Fragment() {
         userName = view.findViewById(R.id.userName)
         useremail = view.findViewById(R.id.useremail)
         userImage= view.findViewById(R.id.userImage)
+        logout=view.findViewById(R.id.logout)
 
         CoroutineScope(Dispatchers.IO).launch {
             val repositry = UserRepository()
@@ -84,6 +90,32 @@ class ProfileFragment : Fragment() {
                 val intent = Intent(getActivity(), EditProfileActivity::class.java)
                 getActivity()?.startActivity(intent)
             }
+        }
+
+
+        logout.setOnClickListener {
+//            loadFragment(fragment)
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setMessage("Do you want to logout?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            builder.setPositiveButton("yes"){dialogInterface, which->
+                val sharePref = requireActivity().getSharedPreferences("MyPref", AppCompatActivity.MODE_PRIVATE )
+                val editor = sharePref.edit()
+                editor.remove("email")
+                editor.remove("password")
+                editor.remove("_id")
+                        .apply()
+                CoroutineScope(Dispatchers.IO).launch{
+                    UserDB.getInstance(requireContext()).getUserDAO().logout()
+                    withContext(Main){
+                        startActivity(Intent(context, LoginActivity::class.java))
+                    }
+                }
+            }
+            builder.setNegativeButton("No"){
+                dialogInterface, which ->
+            }
+            builder.show()
         }
     }
 

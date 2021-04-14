@@ -14,7 +14,7 @@ import com.aakash.fithub.entity.Workout
 
 @Database(
 entities =[(User::class), (Workout::class),(ForFavProduct::class)],
-version = 4
+version = 5
 )
 
 abstract class

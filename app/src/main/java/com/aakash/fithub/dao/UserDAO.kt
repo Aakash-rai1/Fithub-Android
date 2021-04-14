@@ -12,6 +12,9 @@ interface UserDAO {
     @Insert
     suspend fun RegisterActivity(user: User)
 
+    @Query("Delete from User")
+    suspend fun logout()
+
 //    @Query("select * from User where email=(:email) and password=(:password)")
 //    suspend fun checkUser(email: String, password: String)
 }

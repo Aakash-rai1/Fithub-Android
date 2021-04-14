@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
 import com.aakash.fithub.R
+import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -48,7 +49,7 @@ class EditProfileActivity : AppCompatActivity() {
         etLastname= findViewById(R.id.etLastname)
         btnDone= findViewById(R.id.btnDone)
         imgAdd= findViewById(R.id.imgAdd)
-
+        getDataForEdit()
         btnDone.setOnClickListener {
 
             editprofilebtn()
@@ -60,34 +61,50 @@ class EditProfileActivity : AppCompatActivity() {
 
     }
 
+    private fun getDataForEdit() {
+        val intent = intent.getParcelableExtra<User>("user")
+        if (intent != null) {
+            Toast.makeText(this, "Here", Toast.LENGTH_SHORT).show()
+            val FirstName = intent.fname
+            val LastName = intent.lname
+            val Email = intent.email
+
+            etFirstname.setText(FirstName).toString()
+            etLastname.setText(LastName).toString()
+            etemail.setText(Email).toString()
+        } else {
+            Toast.makeText(this, "No value Retrived", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     fun editprofilebtn() {
 
         val firstname = etFirstname.text.toString()
         val lastname = etLastname.text.toString()
         val email = etemail.text.toString()
-        val image = imgAdd.toString()
 
 
 
-        val gender = usergender
 
-        val userData =
-            User(fname = firstname, email = email, lname = lastname)
+        val userData = User(fname = firstname, email = email, lname = lastname, _id =ServiceBuilder.id!!)
 
         CoroutineScope(Dispatchers.IO).launch {
 
             val repository = UserRepository()
             val response = repository.updateUser(userData)
             if (response.success == true) {
-                withContext(Dispatchers.Main) {
-                    if(imageUrl != null){
-                        uploadImage(response.data!!._id.toString())
-                    }
-                    Toast.makeText(
-                        this@EditProfileActivity,
-                        "User updated Successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                val id=response.id
+                if(imageUrl != null){
+                    uploadImage(id!!)
+                    withContext(Dispatchers.Main) {
+
+                        Toast.makeText(
+                                this@EditProfileActivity,
+                                "User updated Successfully",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                }
+
                 }
             } else {
                 withContext(Dispatchers.Main) {
@@ -201,7 +218,7 @@ class EditProfileActivity : AppCompatActivity() {
         if (imageUrl != null) {
             val file = File(imageUrl!!)
             val reqFile =
-                RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                RequestBody.create(MediaType.parse("image/${file.extension}"), file)
             val body =
                 MultipartBody.Part.createFormData("file", file.name, reqFile)
             CoroutineScope(Dispatchers.IO).launch {

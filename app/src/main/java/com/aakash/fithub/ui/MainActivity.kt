@@ -1,10 +1,12 @@
 package com.aakash.fithub.ui
 
 
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -39,14 +41,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         arrayList.add(Workout())
 
         val homeFragment = HomeFragment()
-        val workoutFragment = WorkoutFragment()
         val profileFragment = ProfileFragment()
         val favFragment = FavorateFragment()
         val bmiFragment= BmiFragment()
         val MapsFragment= MapsFragment()
 
         drawer=findViewById(R.id.drawer_layout);
-
 
        toggleAction = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(toggleAction);
@@ -71,6 +71,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             when(it.itemId){
                 R.id.bmi ->{makeCurrentFragment(bmiFragment)}
             }
+
+
+
             true
         }
 
@@ -94,6 +97,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     true
                 }
 
+
+
                 else -> false
             }
         }
@@ -102,6 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
