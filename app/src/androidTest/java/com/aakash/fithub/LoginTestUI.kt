@@ -2,6 +2,8 @@ package com.aakash.fithub
 
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
@@ -18,7 +20,7 @@ class LoginTestUI {
     @Test
     fun checkArithmeticUI() {
         Espresso.onView(withId(R.id.etUserName))
-            .perform(ViewActions.typeText("d@gmail.com"))
+            .perform(ViewActions.typeText("aks@gmail.com"))
         Thread.sleep(2000)
         Espresso.closeSoftKeyboard()
 
@@ -26,8 +28,14 @@ class LoginTestUI {
             .perform(ViewActions.typeText("12345"))
         Thread.sleep(2000)
         Espresso.closeSoftKeyboard()
+
         Espresso.onView(withId(R.id.btnLogin))
             .perform(ViewActions.click())
+
+
+        Thread.sleep(2000)
+        Espresso.onView(withId(R.id.fragmentContainer))
+                .check(matches(isDisplayed()))
         
     }
 }
