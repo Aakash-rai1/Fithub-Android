@@ -6,6 +6,7 @@ import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.AddFav
 import com.aakash.fithub.response.AddFavResponse
 import com.aakash.fithub.response.ForFavproductReponse
+import okhttp3.MultipartBody
 
 class AddFavrepository: MyApiRequest(){
     val myApi= ServiceBuilder.buildServices(AddFavApi::class.java)
@@ -29,4 +30,5 @@ class AddFavrepository: MyApiRequest(){
             myApi.deleteFavPRoduct(ServiceBuilder.token!!,noteId)
         }
     }
+
 }

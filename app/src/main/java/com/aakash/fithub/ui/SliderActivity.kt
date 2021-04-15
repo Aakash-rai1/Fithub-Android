@@ -3,6 +3,10 @@ package com.aakash.fithub.ui
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -24,6 +28,8 @@ class SliderActivity : AppCompatActivity() {
     private lateinit var textSkipIntro: TextView
 
 
+
+
     private val introSliderAdapter = IntroSliderAdapter(
         listOf(
             IntroSlide("Workout from home",
@@ -38,6 +44,8 @@ class SliderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slider)
+
+
 
 
         if(!isFirstTimeAppStart()){
@@ -85,6 +93,8 @@ class SliderActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 
 
@@ -139,4 +149,6 @@ class SliderActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }

@@ -21,10 +21,9 @@ UserApi {
             @Body users: User
     ):Response<LoginResponse>
 
-    @PUT("update/user/{id}")
+    @PUT("user/updatea")
     suspend fun updateUser(
         @Header("Authorization") token: String,
-//        @Path("id") id: String,
         @Body user: User
 
     ): Response<UserUpdateResponse>
@@ -37,7 +36,7 @@ UserApi {
     ): Response<LoginResponse>
 
     @Multipart
-    @POST("user/{id}/photo")
+    @PUT("update/Profile/{id}")
     suspend fun  uploadImage(
         @Header("Authorization") token: String,
         @Path("id") id:String,

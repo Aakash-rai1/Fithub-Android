@@ -1,13 +1,14 @@
+package com.aakash.fithub.ui
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.User
@@ -26,13 +27,13 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditProfileActivity : AppCompatActivity() {
+class ProfileEditActivity : AppCompatActivity() {
     private val REQUEST_GALLERY_CODE=0;
     private val REQUEST_CAMERA_CODE=1;
     private lateinit var imgAdd: ImageView;
     private lateinit var etFirstname: EditText;
     private lateinit var etLastname: EditText;
-    private lateinit var etemail:EditText;
+    private lateinit var etemail: EditText;
     var imageUrl:String?=null
     private lateinit var btnDone: Button;
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -43,6 +44,7 @@ class EditProfileActivity : AppCompatActivity() {
         etLastname=findViewById(R.id.etLastname)
         etemail=findViewById(R.id.etemail)
         btnDone=findViewById(R.id.btnDone)
+        imgAdd=findViewById(R.id.imgAdd)
         CoroutineScope(Dispatchers.IO).launch {
             val repository= UserRepository()
             val response=repository.getUser(ServiceBuilder.id!!)
@@ -67,25 +69,25 @@ class EditProfileActivity : AppCompatActivity() {
             popup()
         }
         btnDone.setOnClickListener(){
-                val user = User(_id=ServiceBuilder.id!!,fname = etFirstname.text.toString(), lname = etLastname.text.toString(),email = etemail.text.toString())
-                CoroutineScope(Dispatchers.IO).launch {
-                    val repository = UserRepository()
-                    val response = repository.updateUser(user)
-                    val suc=response
-                    if (response.success == true) {
-                        val id= ServiceBuilder.id!!
-                        if(imageUrl != null){
-                            uploadImage(id!!)
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(this@EditProfileActivity, "Student Added Successfully", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    } else {
+            val user = User(_id= ServiceBuilder.id!!,fname = etFirstname.text.toString(), lname = etLastname.text.toString(),email = etemail.text.toString())
+            CoroutineScope(Dispatchers.IO).launch {
+                val repository = UserRepository()
+                val response = repository.updateUser(user)
+                val suc=response
+                if (response.success == true) {
+                    val id= ServiceBuilder.id!!
+                    if(imageUrl != null){
+                        uploadImage(id!!)
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(this@EditProfileActivity, "error occours", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ProfileEditActivity, "Student Added Successfully", Toast.LENGTH_SHORT).show()
                         }
                     }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@ProfileEditActivity, "error occours", Toast.LENGTH_SHORT).show()
+                    }
                 }
+            }
         }
     }
 
@@ -154,13 +156,13 @@ class EditProfileActivity : AppCompatActivity() {
                 val response = userRepository.uploadImage(studentId, body)
                 if (response.success == true) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@EditProfileActivity, "Uploaded", Toast.LENGTH_SHORT)
+                        Toast.makeText(this@ProfileEditActivity, "Uploaded", Toast.LENGTH_SHORT)
                                 .show()
                         finish()
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@EditProfileActivity, "error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ProfileEditActivity, "error", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.aakash.fithub.fragments
 
+import EditProfileActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +18,8 @@ import com.aakash.fithub.R
 import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.repository.UserRepository
-import com.aakash.fithub.ui.EditProfileActivity
 import com.aakash.fithub.ui.LoginActivity
+import com.aakash.fithub.ui.ProfileEditActivity
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -87,8 +88,7 @@ class ProfileFragment : Fragment() {
 
         editProfile.setOnClickListener {
             activity?.let {
-                val intent = Intent(getActivity(), EditProfileActivity::class.java)
-                getActivity()?.startActivity(intent)
+                startActivity(Intent(context,ProfileEditActivity::class.java))
             }
         }
 

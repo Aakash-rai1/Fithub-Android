@@ -10,7 +10,6 @@ import com.aakash.fithub.response.LoginResponse
 import com.aakash.fithub.response.RegisterResponse
 import com.aakash.fithub.response.UserUpdateResponse
 import okhttp3.MultipartBody
-
 class UserRepository: MyApiRequest() {
     val myApi= ServiceBuilder.buildServices(UserApi::class.java)
 
@@ -37,12 +36,11 @@ class UserRepository: MyApiRequest() {
         }
     }
 
-
-
     suspend fun uploadImage(id: String, body: MultipartBody.Part)
             : ImageResponse {
         return apiRequest {
             myApi.uploadImage(ServiceBuilder.token!!, id, body)
         }
     }
+
 }

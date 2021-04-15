@@ -13,7 +13,8 @@ class WorkOutRepository : MyApiRequest(){
             WorkoutApi.addWorkout(ServiceBuilder.token!!)
         }
     }
-    suspend fun getallProduct(id:String): AddFavResponse {
+    suspend fun
+            getallProduct(id:String): AddFavResponse {
         return apiRequest {
             WorkoutApi.getallProduct(ServiceBuilder.token!!,id!!)
         }

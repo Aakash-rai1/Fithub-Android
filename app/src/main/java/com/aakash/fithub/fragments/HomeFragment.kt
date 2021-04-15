@@ -2,6 +2,7 @@ package com.aakash.fithub.fragments
 
 import android.content.Context
 import android.content.Context.SENSOR_SERVICE
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -22,6 +23,7 @@ import com.aakash.fithub.adapter.WorkoutHomeAdapter
 import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.entity.Workout
 import com.aakash.fithub.repository.WorkOutRepository
+import com.aakash.fithub.ui.PocketMode
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import kotlinx.coroutines.CoroutineScope
@@ -31,11 +33,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomeFragment : Fragment(), SensorEventListener {
-
+class HomeFragment : Fragment(),SensorEventListener{
     private lateinit var sensorManager: SensorManager
-    private var sensor: Sensor?= null
-
+    private var sensor: Sensor?=null
 
     val sampleImages = intArrayOf(
             R.drawable.c1,
@@ -44,6 +44,10 @@ class HomeFragment : Fragment(), SensorEventListener {
             R.drawable.c4
 
     )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     val imageListener = ImageListener { position, imageView ->
         imageView.setImageResource(sampleImages[position])
@@ -57,7 +61,11 @@ class HomeFragment : Fragment(), SensorEventListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        return view;
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         carouselView = view.findViewById(R.id.carousel)
 
         carouselView.pageCount = sampleImages.size
@@ -65,11 +73,16 @@ class HomeFragment : Fragment(), SensorEventListener {
 
         homeWorkOutrec = view.findViewById(R.id.homeWorkOutrec)
 
-
-
+        sensorManager = activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
+        if (!checkSensor())
+            return
+        else {
+            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+        }
         getData()
-        return view;
     }
+
 
 
 
@@ -102,12 +115,30 @@ class HomeFragment : Fragment(), SensorEventListener {
 
 
     }
+    private fun checkSensor(): Boolean {
+        var flag=true
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)==null){
+            flag= false
+        }
+        return flag
 
-    override fun onSensorChanged(event: SensorEvent?) {
-        TODO("Not yet implemented")
     }
+    override fun onSensorChanged(event: SensorEvent?) {
+        val values= event!!.values[0]
+        if(values<=4){
+            startActivity(Intent(context, PocketMode::class.java))
+        }
+        else
+        {
+            Toast.makeText(context, "ahsjha", Toast.LENGTH_SHORT)
+        }
+    }
+
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
+
     }
+
+
+
 }
