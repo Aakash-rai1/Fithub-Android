@@ -23,7 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitHub"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.ProfileEditActivity"></activity>
+        <activity android:name=".ui.videos.AbsActivity"></activity>
+        <activity android:name=".ui.videos.FullBody" />
+        <activity android:name=".ui.LightActivity" />
+        <activity android:name=".ui.ProfileEditActivity" />
         <activity android:name=".ui.PocketMode" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,12 +40,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ui.YoutubePlayerActivity" />
-        <activity android:name=".ui.EditProfileActivity" />
         <activity
-            android:name=".ui.WorkoutViewActivity"
+            android:name=".ui.videos.ChestActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.NotificationActivity" />
         <activity
             android:name=".ui.SplashActivity"
             android:screenOrientation="portrait">

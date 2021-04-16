@@ -13,6 +13,7 @@ import com.aakash.fithub.api.ServiceBuilder
 import com.aakash.fithub.entity.User
 import com.aakash.fithub.repository.UserRepository
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,6 +74,15 @@ class EditProfileActivity : AppCompatActivity() {
                     val response = repository.updateUser(user)
                     val suc=response
                     if (response.success == true) {
+                        val snack=  Snackbar.make(
+                                it,
+                                " Item removed from favorites",
+                                Snackbar.LENGTH_SHORT
+                        )
+                        snack.setAction("Ok") {
+                            snack.dismiss()
+                        }
+                        snack.show()
                         val id= ServiceBuilder.id!!
                         if(imageUrl != null){
                             uploadImage(id!!)

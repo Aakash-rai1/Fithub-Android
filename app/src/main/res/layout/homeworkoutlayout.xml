@@ -62,5 +62,5 @@
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fav" />
+        app:srcCompat="@drawable/ic_favwhite" />
 </androidx.constraintlayout.widget.ConstraintLayout>

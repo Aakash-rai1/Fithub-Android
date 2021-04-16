@@ -22,15 +22,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity(), SensorEventListener {
+class LoginActivity : AppCompatActivity()
+//        , SensorEventListener
+{
     private val permissions = arrayOf(
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.ACCESS_FINE_LOCATION
     )
 
-    private lateinit var sensorManager: SensorManager
-    private var sensor: Sensor?= null
+//    private lateinit var sensorManager: SensorManager
+//    private var sensor: Sensor?= null
 
     private lateinit var etUserName: EditText
     private lateinit var etPassword: EditText
@@ -50,15 +52,15 @@ class LoginActivity : AppCompatActivity(), SensorEventListener {
         signup = findViewById(R.id.signup)
         LinearLayout = findViewById(R.id.layout)
 
-        sensorManager= getSystemService(SENSOR_SERVICE) as SensorManager
-
-
-        if(!checkSensor())
-            return
-        else{
-            sensor= sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
-            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL  )
-        }
+//        sensorManager= getSystemService(SENSOR_SERVICE) as SensorManager
+//
+//
+//        if(!checkSensor())
+//            return
+//        else{
+//            sensor= sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+//            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL  )
+//        }
 
 
         checkRunTimePermission()
@@ -78,27 +80,27 @@ class LoginActivity : AppCompatActivity(), SensorEventListener {
         startActivity(intent)
     }
 
-    private fun checkSensor(): Boolean {
-        var flag=true
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)==null){
-            flag= false
-        }
-        return flag
-
-    }
-
-    override fun onSensorChanged(event: SensorEvent?){
-        val values=event!!.values[1]
-        if (values<0)
-             signup()
-            else if (values>0)
-            Toast.makeText(this, "swap left", Toast.LENGTH_SHORT).show()
-                
-    }
-
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
-    }
+//    private fun checkSensor(): Boolean {
+//        var flag=true
+//        if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)==null){
+//            flag= false
+//        }
+//        return flag
+//
+//    }
+//
+//    override fun onSensorChanged(event: SensorEvent?){
+//        val values=event!!.values[1]
+//        if (values<0)
+//             signup()
+//            else if (values>0)
+//            Toast.makeText(this, "swap left", Toast.LENGTH_SHORT).show()
+//
+//    }
+//
+//    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+//        TODO("Not yet implemented")
+//    }
 
     private fun checkRunTimePermission() {
         if (!hasPermission()) {

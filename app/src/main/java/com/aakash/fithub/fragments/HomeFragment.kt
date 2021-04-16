@@ -33,9 +33,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomeFragment : Fragment(),SensorEventListener{
-    private lateinit var sensorManager: SensorManager
-    private var sensor: Sensor?=null
+class HomeFragment : Fragment()
+//    ,SensorEventListener
+{
+//    private lateinit var sensorManager: SensorManager
+//    private var sensor: Sensor?=null
 
     val sampleImages = intArrayOf(
             R.drawable.c1,
@@ -68,18 +70,20 @@ class HomeFragment : Fragment(),SensorEventListener{
         super.onViewCreated(view, savedInstanceState)
         carouselView = view.findViewById(R.id.carousel)
 
-        carouselView.pageCount = sampleImages.size
+
         carouselView.setImageListener(imageListener)
+        carouselView.pageCount = sampleImages.size
+
 
         homeWorkOutrec = view.findViewById(R.id.homeWorkOutrec)
 
-        sensorManager = activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
-        if (!checkSensor())
-            return
-        else {
-            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
-        }
+//        sensorManager = activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
+//        if (!checkSensor())
+//            return
+//        else {
+//            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+//            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+//        }
         getData()
     }
 
@@ -115,29 +119,26 @@ class HomeFragment : Fragment(),SensorEventListener{
 
 
     }
-    private fun checkSensor(): Boolean {
-        var flag=true
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)==null){
-            flag= false
-        }
-        return flag
-
-    }
-    override fun onSensorChanged(event: SensorEvent?) {
-        val values= event!!.values[0]
-        if(values<=4){
-            startActivity(Intent(context, PocketMode::class.java))
-        }
-        else
-        {
-            Toast.makeText(context, "ahsjha", Toast.LENGTH_SHORT)
-        }
-    }
-
-
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
-    }
+//    private fun checkSensor(): Boolean {
+//        var flag=true
+//        if(sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)==null){
+//            flag= false
+//        }
+//        return flag
+//
+//    }
+//    override fun onSensorChanged(event: SensorEvent?) {
+//        val values= event!!.values[0]
+//        if(values<=4){
+//            startActivity(Intent(context, PocketMode::class.java))
+//        }
+//
+//    }
+//
+//
+//    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+//
+//    }
 
 
 

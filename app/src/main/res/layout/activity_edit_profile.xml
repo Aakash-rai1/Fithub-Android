@@ -62,7 +62,7 @@
             android:height="50dp"
             android:gravity="center"
             android:hint="Email"
-            android:inputType="number" />
+            />
 
 
         <Button
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="120dp"
-            android:text="Done" />
+            android:text="Update" />
 
     </LinearLayout>
 

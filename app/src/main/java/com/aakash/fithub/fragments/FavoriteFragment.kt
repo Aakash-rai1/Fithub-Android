@@ -1,10 +1,16 @@
 package com.aakash.fithub.fragments
 
+import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
@@ -14,68 +20,61 @@ import com.aakash.fithub.db.UserDB
 import com.aakash.fithub.entity.ForFavProduct
 import com.aakash.fithub.repository.AddFavrepository
 import com.aakash.fithub.repository.WorkOutRepository
+import com.aakash.fithub.ui.LightActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 private lateinit var favRecycle: RecyclerView;
 
-class FavorateFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class FavoriteFragment : Fragment()
+//    , SensorEventListener
+{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+//    private lateinit var sensorManager: SensorManager
+//    private var sensor: Sensor?=null
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favorate, container, false)
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         favRecycle = view.findViewById(R.id.favRecycle);
-        loadvlaue()
+
+//        sensorManager = activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
+//        if (!checkSensor())
+//            return
+//        else {
+//            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+//            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+//        }
+
+        loadvalue()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                FavorateFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
-    }
 
-    private fun loadvlaue() {
+    private fun loadvalue() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val repository = AddFavrepository()
             val response = repository.getallFavProdcut(ServiceBuilder.id!!)
             if (response.success == true) {
                 val data = response.data
-                var allnoteid: String? = null
+                var favid: String? = null
 
                 UserDB.getInstance(requireContext()).getFavDao().dropTable()
                 for (i in data!!.indices) {
-                    allnoteid = data[i].productId
-                    val noteRepository = WorkOutRepository()
-                    val noteResponse = noteRepository.getallProduct(allnoteid!!)
-                    if (noteResponse.success == true) {
-                        UserDB.getInstance(requireContext()).getFavDao().AddProdcut(noteResponse.data)
+                    favid = data[i].productId
+                    val workoutRepository = WorkOutRepository()
+                    val workoutResponse = workoutRepository.getallProduct(favid!!)
+                    if (workoutResponse.success == true) {
+                        UserDB.getInstance(requireContext()).getFavDao().AddProdcut(workoutResponse.data)
                     }
                 }
                 val bookmarkedList = UserDB.getInstance(requireContext()).getFavDao().getproduct()
@@ -88,4 +87,26 @@ class FavorateFragment : Fragment() {
             }
         }
     }
+
+//    private fun checkSensor(): Boolean {
+//        var flag=true
+//        if(sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)==null){
+//            flag= false
+//        }
+//        return flag
+//
+//    }
+//    override fun onSensorChanged(event: SensorEvent?) {
+//        val values= event!!.values[0]
+//        if(values<=10000){
+//            startActivity(Intent(context, LightActivity::class.java))
+//        }
+//
+//    }
+//
+//
+//    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+//
+//    }
+
 }

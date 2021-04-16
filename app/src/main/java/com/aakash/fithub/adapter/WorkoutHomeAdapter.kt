@@ -12,15 +12,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.aakash.fithub.R
-import com.aakash.fithub.ui.YoutubePlayerActivity
+import com.aakash.fithub.ui.videos.ChestActivity
 import com.aakash.fithub.api.ServiceBuilder
-import com.aakash.fithub.bmi.BMIFormula
 import com.aakash.fithub.entity.AddFav
 import com.aakash.fithub.entity.Workout
 import com.aakash.fithub.repository.AddFavrepository
-import com.aakash.fithub.ui.NotificationActivity
+import com.aakash.fithub.ui.videos.AbsActivity
+import com.aakash.fithub.ui.videos.FullBody
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -53,18 +54,21 @@ class WorkoutHomeAdapter (
             itemView.setOnClickListener{view:View->
                 val position: Int= adapterPosition
                 if (position==0){
-                    Toast.makeText(view.context,"0",Toast.LENGTH_SHORT).show()
+                    val intent = Intent (view.context, FullBody::class.java)
+                    view.context.startActivity(intent)
                 }
 
                 if (position==1){
-                    Toast.makeText(view.context,"1",Toast.LENGTH_SHORT).show()
+                    val intent = Intent (view.context, AbsActivity::class.java)
+                    view.context.startActivity(intent)
                 }
 
                 if (position==2){
-                    Toast.makeText(view.context,"2",Toast.LENGTH_SHORT).show()
+                    val intent = Intent (view.context, ChestActivity::class.java)
+                    view.context.startActivity(intent)
                 }
                 if (position==3){
-                    val intent = Intent (view.context, YoutubePlayerActivity::class.java)
+                    val intent = Intent (view.context, ChestActivity::class.java)
                     view.context.startActivity(intent)
                 }
 

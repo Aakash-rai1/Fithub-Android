@@ -3,6 +3,8 @@ package com.aakash.fithub.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.aakash.fithub.entity.User
 
 
@@ -14,6 +16,8 @@ interface UserDAO {
 
     @Query("Delete from User")
     suspend fun logout()
+
+
 
 //    @Query("select * from User where email=(:email) and password=(:password)")
 //    suspend fun checkUser(email: String, password: String)

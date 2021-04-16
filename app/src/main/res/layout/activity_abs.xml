@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chest Workout"
+        android:text="Abs Workout"
         android:textSize="25dp"
         android:textStyle="bold"
         android:layout_margin="2dp"/>
@@ -19,14 +19,14 @@
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:videoId="RTF4ADblouI"
+        app:videoId="uUKAYkQZXko"
         app:autoPlay="false"
         app:showYouTubeButton="false"/>
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:videoId="U4ThnZdBryA"
+        app:videoId="zzD80vCLq0Y"
         android:layout_marginTop="16dp"
         app:autoPlay="false"
         app:showYouTubeButton="false"/>
@@ -34,7 +34,7 @@
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:videoId="EEuFP9kLjNo"
+        app:videoId="2pLT-olgUJs"
         android:layout_marginTop="16dp"
         app:autoPlay="false"
         app:showYouTubeButton="false"/>
