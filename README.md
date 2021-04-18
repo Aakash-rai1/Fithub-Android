@@ -19,6 +19,7 @@ Fithub is a mobile fitness application that provides a platform for its users to
 * Restful api
 
 # Youtube Link
+https://youtu.be/XQTJwD8ZstI
 
 # Backend Api Link
 https://github.com/softwarica-github/t2---backend-api-Aakash-rai1.git
