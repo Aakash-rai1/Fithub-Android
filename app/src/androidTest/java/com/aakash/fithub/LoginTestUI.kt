@@ -20,12 +20,12 @@ class LoginTestUI {
     @Test
     fun checkArithmeticUI() {
         Espresso.onView(withId(R.id.etUserName))
-            .perform(ViewActions.typeText("aks@gmail.com"))
+            .perform(ViewActions.typeText("Test123@gmail.com"))
         Thread.sleep(2000)
         Espresso.closeSoftKeyboard()
 
         Espresso.onView(withId(R.id.etPassword))
-            .perform(ViewActions.typeText("12345"))
+            .perform(ViewActions.typeText("test12"))
         Thread.sleep(2000)
         Espresso.closeSoftKeyboard()
 

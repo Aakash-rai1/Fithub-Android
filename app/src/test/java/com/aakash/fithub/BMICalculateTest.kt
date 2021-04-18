@@ -14,16 +14,28 @@ private lateinit var arithmetic: BMIFormula
 
 class BMICalculateTest {
     private var repository= UserRepository()
+//    @Test
+//    fun checkRegisterUSer() = runBlocking {
+//        val user =
+//                User(fname = "this is test", email = "thisisemail1mdnsshf212@gmail.com",password = "testing12")
+//        repository = UserRepository()
+//        val expectedResult = true
+//        val response = repository.registerUSer(user)
+//        val actualResult = response.success!!
+//        Assert.assertEquals(expectedResult, actualResult)
+//    }
+
+
     @Test
     fun checkRegisterUSer() = runBlocking {
-        val user =
-                User(fname = "this is test", email = "thisisemail1mdnsshf212@gmail.com",password = "testing12")
+        val user =User(fname = "this is test", email = "thisisemail1mdnsshf2dfyfgh12@gmail.com",password = "testing12")
         repository = UserRepository()
-        val expectedResult = false
+        val expectedResult = true
         val response = repository.registerUSer(user)
         val actualResult = response.success!!
         Assert.assertEquals(expectedResult, actualResult)
     }
+
     @Test
     fun loginUser() = runBlocking {
         val user = User(email = "aks@gmail.com", password = "12345")
@@ -46,8 +58,22 @@ class BMICalculateTest {
             Assert.assertEquals(expectedResult, actualResult)
         }
     }
+
     @Test
-    fun getAllNotes()= runBlocking {
+    fun checkBMI()=runBlocking {
+        val user = User(email = "aks@gmail.com", password = "12345")
+        repository = UserRepository()
+        val expectedResult = false
+        val response = repository.checkUser(user)
+        ServiceBuilder.token = "Bearer " + response.token
+        ServiceBuilder.id = response.id
+        val repo=WorkOutRepository()
+        val actualResult=repo.getallProduct(ServiceBuilder.id!!).success
+        Assert.assertEquals(expectedResult, actualResult)
+    }
+
+    @Test
+    fun getAllWorkout()= runBlocking {
         val user = User(email = "aks@gmail.com", password = "12345")
         repository = UserRepository()
         val expectedResult = true
@@ -59,7 +85,7 @@ class BMICalculateTest {
         Assert.assertEquals(expectedResult, actualResult)
     }
     @Test
-    fun getAllbookmarkedNotes()= runBlocking {
+    fun getAllbookmarkedWorkout()= runBlocking {
         val user = User(email = "aks@gmail.com", password = "12345")
         repository = UserRepository()
         val expectedResult = true
@@ -70,4 +96,6 @@ class BMICalculateTest {
         val actualResult=repo.getallProduct(ServiceBuilder.id!!).success
         Assert.assertEquals(expectedResult, actualResult)
     }
+
+
 }
