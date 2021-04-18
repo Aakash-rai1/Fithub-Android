@@ -7,7 +7,6 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import com.aakash.fithub.ui.LoginActivity
-import com.aakash.fithub.ui.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,15 +15,12 @@ import org.junit.runners.JUnit4
 
 @LargeTest
 @RunWith(JUnit4 :: class)
-
-class checkBMIUI {
+class EditProfileTesting {
     @get : Rule
     val testRule = ActivityScenarioRule(LoginActivity::class.java)
     @Test
 
-
-
-    fun BMIUITesting() {
+    fun EditProfileUITesting() {
         Espresso.onView(ViewMatchers.withId(R.id.etUserName))
                 .perform(ViewActions.typeText("Test123@gmail.com"))
         Thread.sleep(2000)
@@ -43,10 +39,27 @@ class checkBMIUI {
         Espresso.onView(ViewMatchers.withId(R.id.fragmentContainer))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        Espresso.onView(ViewMatchers.withId(R.id.bmi))
+        Espresso.onView(ViewMatchers.withId(R.id.icProfile))
                 .perform(ViewActions.click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.bmifrag))
+        Espresso.onView(ViewMatchers.withId(R.id.profilefragment))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+
+        Thread.sleep(2000)
+        Espresso.onView(ViewMatchers.withId(R.id.editProfile))
+                .perform(ViewActions.click())
+
+
+//        Thread.sleep(2000)
+//        Espresso.onView(ViewMatchers.withId(R.id.profileedit))
+//                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        Thread.sleep(2000)
+        Espresso.onView(ViewMatchers.withId(R.id.imgAdd))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        Thread.sleep(2000)
     }
+
 }
