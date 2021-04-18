@@ -4,7 +4,7 @@ finalassignment-Aakash-rai1 created by GitHub Classroom
 # Introduction
 Fithub is a mobile fitness application that provides a platform for its users to perform workout at home watching handpicked videos online from youtube inside the app. In the app, the users can create their profile and add the given workout programs to their favorite so that they do not have to go through the trouble of picking the same videos everytime while performing their workouts. The application is made user-friendly and responsive for comfort.
 
-#Features
+# Features
 *Implementation of Coroutines and Retrofit
 *Implementation of CRUD operation
 *Profile section for adding user information
@@ -18,7 +18,7 @@ Fithub is a mobile fitness application that provides a platform for its users to
 *Wear OS system
 *Restful api
 
-#Youtube Link
+# Youtube Link
 
-#Backend Api Link
+# Backend Api Link
 https://github.com/softwarica-github/t2---backend-api-Aakash-rai1.git
